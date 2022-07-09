@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/components/filters/TableFiltersClient/TableFiltersClient.scss", "../../src/components/ui/controls/components/LayoutControl/LayoutControl.scss"],
+  "sourcesContent": [null, null],
+  "mappings": "AAAA,OACE,YAIA,oBACE,gBANJ,mBAcE,qBACE,mBAOJ,YACE,aACA,sCACA,SACA,mBACA,iBC1BF,eACE,WAGF,sBACE,UAIA,eACA,WACA",
+  "names": []
+}

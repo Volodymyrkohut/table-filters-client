@@ -1,0 +1,38 @@
+button {
+  height: 38px;
+}
+
+.filter-list{
+  &__items{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item{
+
+  }
+  &__button{
+    margin-bottom: 20px;
+  }
+
+}
+
+
+
+.filter-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+  max-width: 1000px;
+
+  &__field {
+    &__values {
+    }
+    &__operator {
+    }
+    &__id {
+    }
+  }
+}
