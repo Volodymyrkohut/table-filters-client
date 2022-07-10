@@ -8,6 +8,19 @@
     "prettier"
   ],
   "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "react/prop-types": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".js", ".jsx"] }],
+    "arrow-body-style": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/state-in-constructor": [1, "never"],
+    "react/no-array-index-key": "off",
+    "react/require-default-props": "off",
+    "react/function-component-definition": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "import/no-extraneous-dependencies": "off"
+  },
   "parserOptions": {
     "project": "./tsconfig.eslint.json"
   }

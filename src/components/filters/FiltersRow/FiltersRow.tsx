@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FilterTransformedItem, OperatorOptions, Operators } from '../../../types/filter';
+import { OperatorOptions } from '../../../types/filter';
 import AppReactSelectControl from '../../ui/controls/AppReactSelectControl';
 import AppSelectControl from '../../ui/controls/AppSelectControl';
 
@@ -13,7 +13,7 @@ export interface IFiltersRow {
   operatorOptions: OperatorOptions;
   valueOptions: Array<IReactSelectOption> | null;
   onRemove: (index: number) => void;
-  onChangeIdSelect?: (value: any) => void;
+  onChangeIdSelect: (value: any) => void;
   index: number;
 }
 

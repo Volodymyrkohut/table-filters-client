@@ -4,7 +4,7 @@ import { Field, FieldProps } from 'formik';
 import FieldReactSelect from '../fields/FieldReactSelect/FieldReactSelect';
 import ControlLayout from './components/LayoutControl/LayoutControl';
 
-export interface AppReactSelectControl extends Props {
+export interface IAppReactSelectControl extends Props {
   options: Array<any> | any;
   onChange?: (value: any) => void;
   name: string;
@@ -12,7 +12,7 @@ export interface AppReactSelectControl extends Props {
   type?: 'async' | 'creatable' | 'default';
 }
 
-const AppReactSelectControl: React.FC<AppReactSelectControl> = (props) => {
+const AppReactSelectControl: React.FC<IAppReactSelectControl> = (props) => {
   const { name, label, onChange, ...rest } = props;
 
   return (
