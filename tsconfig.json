@@ -15,5 +15,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "./src/stories"]
+  "exclude": ["node_modules", "dist", "./src/stories", ".eslintrc.js"]
 }

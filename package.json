@@ -4,6 +4,7 @@
   "description": "",
   "prepablish": "yarn run build && yarn run test",
   "scripts": {
+    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "ts-types": "tsc --emitDeclarationOnly --outDir dist",
     "build": "rimraf dist && node ./build.js && npm run ts-types",
     "pub": "npm run build && npm version patch && npm publish",
@@ -35,15 +36,28 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/yup": "^0.29.14",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
     "babel-loader": "^8.2.5",
     "classnames": "^2.3.1",
     "css-loader": "^6.7.1",
     "esbuild": "^0.14.48",
     "esbuild-node-externals": "^1.4.1",
     "esbuild-sass-plugin": "^2.2.6",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "formik": "^2.2.9",
+    "prettier": "2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
     "react-select": "^5.4.0",
     "rimraf": "^3.0.2",
     "sass": "^1.53.0",
@@ -63,6 +77,5 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
-  "dependencies": {}
+  "types": "dist/index.d.ts"
 }
