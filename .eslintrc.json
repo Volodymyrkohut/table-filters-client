@@ -19,7 +19,8 @@
     "react/require-default-props": "off",
     "react/function-component-definition": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off"
   },
   "parserOptions": {
     "project": "./tsconfig.eslint.json"

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { AsyncPaginateProps } from 'react-select-async-paginate';
 import { Field, FieldProps } from 'formik';
 import ControlLayout from './components/LayoutControl/LayoutControl';
+// eslint-disable-next-line import/no-named-as-default
 import FieldReactSelectPaginate from '../fields/FieldReactSelectPaginate/FieldReactSelectPaginate';
+import { AsyncPaginateType } from '../../../types/filter';
 
-export interface IAppReactSelectPaginateControl extends AsyncPaginateProps<any, any, any, any> {
+export interface IAppReactSelectPaginateControl extends AsyncPaginateType {
   onChange?: (value: any) => void;
   name: string;
   label?: string;

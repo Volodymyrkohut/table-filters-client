@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TableFiltersClient } from '../components';
-import { InitialUILParseData, FilterResponseItem } from '../types/filter';
+import { InitialUILParseData, FilterResponseItem, LoadOptionsType } from '../types/filter';
 import { stringifyUrl, parseUrl } from './helpers';
 
 interface Response {
@@ -11,12 +11,10 @@ interface Response {
 }
 
 interface ResponseSource {
-  data: {
-    data: Array<{
-      id: number;
-      name: string;
-    }>;
-  };
+  data: Array<{
+    id: number;
+    name: string;
+  }>;
 }
 
 const FiltersTablePage = () => {
@@ -24,10 +22,10 @@ const FiltersTablePage = () => {
   const location = useLocation();
   const [filters, setFilters] = useState<Array<FilterResponseItem>>([]);
 
-  const onLoadSourceOptions = (filterId: string) => {
-    return async (inputValue: any, prevOptions: any, { page }: any) => {
+  const onLoadSourceOptions = (filterId: string): LoadOptionsType => {
+    return async (inputValue, prevOptions, additional = { page: 1 }) => {
       const response = await fetch(
-        `https://api.nites.cloud/extranet/hotels/leuschke-plc-hotel-42507/filters/${filterId}/source-data?query=${inputValue}&page=${page}`,
+        `https://api.nites.cloud/extranet/hotels/leuschke-plc-hotel-42507/filters/${filterId}/source-data?query=${inputValue}&page=${additional.page}`,
         {
           headers: {
             Authorization:
@@ -35,14 +33,15 @@ const FiltersTablePage = () => {
           },
         }
       );
+
       const data: ResponseSource = await response.json();
-      const transformed = data.data.map((item: { id: number; name: string }) => ({ value: String(item.id), label: item.name }));
+      const options = data.data.map((item: { id: number; name: string }) => ({ value: String(item.id), label: item.name }));
 
       return {
-        options: transformed,
+        options,
         hasMore: true,
         additional: {
-          page: page + 1,
+          page: additional.page + 1,
         },
       };
     };

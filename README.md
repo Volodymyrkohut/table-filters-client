@@ -39,12 +39,11 @@ const FiltersTable = () => {
   const onLoadSourceOptions = (filterId: string) => {
     return async (inputValue, prevOptions, { page }) => {
       const response = await fetch(`/filters/${filterId}/source-data?query=${inputValue}&page=${page}`);
-      const options = await response.json(); // [{ value, label }]
-      const hasMore = transformed.length > prevOptions.length + 10;
+      const data = await response.json(); 
       
       return {
-        options,
-        hasMore,
+        options: data.options, // [{ value, label }]
+        hasMore: data.hasMore,
         additional: {
           page: page + 1,
         },

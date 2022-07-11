@@ -1,20 +1,14 @@
 import * as React from 'react';
-import { LoadOptions } from 'react-select-async-paginate';
-import { FilterType, OperatorOptions } from '../../../types/filter';
+import { FilterType, LoadOptionsType, OperatorOptions, ReactSelectOption } from '../../../types/filter';
 import FilterSwitchValueField from '../FilterSwitchValueField/FilterSwitchValueField';
 import AppReactSelectControl from '../../ui/controls/AppReactSelectControl';
 import AppSelectControl from '../../ui/controls/AppSelectControl';
 
-export interface IReactSelectOption {
-  label: string;
-  value: string;
-}
-
 export interface IFiltersRow {
-  loadOptions: LoadOptions<any, any, any>;
-  idOptions: Array<IReactSelectOption>;
+  loadOptions: LoadOptionsType;
+  idOptions: Array<ReactSelectOption>;
   operatorOptions: OperatorOptions;
-  valueOptions: Array<IReactSelectOption> | null;
+  valueOptions: Array<ReactSelectOption> | null;
   onRemove: (index: number) => void;
   onChangeIdSelect: (value: any) => void;
   index: number;

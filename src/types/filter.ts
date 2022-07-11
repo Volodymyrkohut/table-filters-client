@@ -1,4 +1,6 @@
 import { TYPE_BOOLEAN, TYPE_DATE, TYPE_ENUM, TYPE_NUMBER, TYPE_SOURCE, TYPE_STRING } from '../const/filters-const';
+import { AsyncPaginateProps } from 'react-select-async-paginate';
+import { LoadOptions } from 'react-select-async-paginate';
 
 export type FilterType =
   | typeof TYPE_NUMBER
@@ -11,6 +13,10 @@ export type FilterType =
 export type Operators = '<' | '<=' | '>' | '>=' | '=' | '!=' | string;
 export type ReactSelectOption = { value: string; label: string };
 export type OperatorOptions = Array<{ key: Operators; value: Operators }>;
+
+export interface Additional {
+  page: number;
+}
 
 export interface FilterResponseItem {
   caption: string;
@@ -49,3 +55,14 @@ export interface InitialValuesItem {
 export interface InitialValues {
   filters: Array<InitialValuesItem>;
 }
+
+// react-select paginate types
+interface GroupBase<Option> {
+  readonly options: readonly Option[];
+  readonly label?: string;
+}
+
+type Base = GroupBase<ReactSelectOption>;
+export type AsyncPaginateType = AsyncPaginateProps<ReactSelectOption, Base, Additional, boolean>;
+
+export type LoadOptionsType = LoadOptions<ReactSelectOption, Base, Additional>;

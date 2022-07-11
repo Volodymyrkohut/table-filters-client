@@ -51,3 +51,23 @@ export const transformResponseFilters = (filters: Array<FilterResponseItem>): Ar
     };
   }) as Array<FilterTransformedItem>;
 };
+
+export const transformWithoutUselessData = (formikData: InitialValues): InitialUILParseData => {
+  const forSerialization = formikData.filters.map((item) => {
+    const { id, ...rest } = item;
+
+    return {
+      ...rest,
+      id: {
+        label: id.label,
+        value: id.value,
+      },
+    };
+  });
+
+  const outputData: InitialUILParseData = {
+    filters: forSerialization,
+  };
+
+  return outputData;
+};
