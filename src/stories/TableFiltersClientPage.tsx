@@ -15,6 +15,36 @@ const FiltersTablePage = () => {
   const location = useLocation();
   const [filters, setFilters] = useState<Array<FilterResponseItem>>([]);
 
+  const onLoadSourceOptions = (filterId: string) => {
+    return async (inputValue: any, prevOptions: any, { page }: any) => {
+      const response = await fetch(
+        `https://api.nites.cloud/extranet/hotels/leuschke-plc-hotel-42507/filters/${filterId}/source-data?query=${inputValue}&page=${page}`,
+        {
+          headers: {
+            Authorization:
+              'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLm5pdGVzLmNsb3VkXC9leHRyYW5ldFwvYXV0aFwvbG9naW4iLCJpYXQiOjE2NTY0MDc4OTIsImV4cCI6MTY4Nzk0Mzg5MiwibmJmIjoxNjU2NDA3ODkyLCJqdGkiOiJ4YlhudkdkaGlzckI0MW91Iiwic3ViIjoxLCJwcnYiOiI2NDNkOGEwNGY0ZDI2ZjUyNTlmMDI4MjkzNjM4NDk1NzEyNzA0OThmIn0.04MWse5o4LpOjTwQNvIkWdKhiVHJvNvgZF8GjBOZDGs',
+          },
+        }
+      );
+
+      type Data = Array<{ id: number; code: string }>;
+
+      const data: Data = await response.json();
+
+      const transformed = data.map((item: { id: number; code: string }) => ({ value: String(item.id), label: item.code }));
+      console.log('ressss', transformed);
+      const hasMore = transformed.length > prevOptions.length + 10;
+
+      return {
+        options: transformed,
+        hasMore,
+        additional: {
+          page: page + 1,
+        },
+      };
+    };
+  };
+
   useEffect(() => {
     fetch('https://api.nites.cloud/extranet/hotels/leuschke-plc-hotel-42507/reservations', {
       headers: {
@@ -45,6 +75,7 @@ const FiltersTablePage = () => {
       onRemoveFilter={() => {
         /* do something after some filter has been deleted */
       }}
+      onLoadSourceOptions={onLoadSourceOptions}
       onSubmitFilterForm={submitForm} /*  after submit */
       initialFilters={initialFilters} /* from url or localstorage */
       filtersTypesList={filters} /* list from server */

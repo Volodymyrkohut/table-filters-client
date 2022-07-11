@@ -1,17 +1,16 @@
 import * as React from 'react';
-import { Props } from 'react-select';
+import { AsyncPaginateProps } from 'react-select-async-paginate';
 import { Field, FieldProps } from 'formik';
-import FieldReactSelect from '../fields/FieldReactSelect/FieldReactSelect';
 import ControlLayout from './components/LayoutControl/LayoutControl';
+import FieldReactSelectPaginate from '../fields/FieldReactSelectPaginate/FieldReactSelectPaginate';
 
-export interface IAppReactSelectControl extends Props {
-  options?: Array<any> | any;
+export interface IAppReactSelectPaginateControl extends AsyncPaginateProps<any, any, any, any> {
   onChange?: (value: any) => void;
   name: string;
   label?: string;
 }
 
-const AppReactSelectControl: React.FC<IAppReactSelectControl> = (props) => {
+const AppReactSelectPaginateControl: React.FC<IAppReactSelectPaginateControl> = (props) => {
   const { name, label, onChange, ...rest } = props;
 
   return (
@@ -22,7 +21,7 @@ const AppReactSelectControl: React.FC<IAppReactSelectControl> = (props) => {
 
         return (
           <ControlLayout isError={isError} error={meta.error} label={label}>
-            <FieldReactSelect
+            <FieldReactSelectPaginate
               {...rest}
               {...field}
               onBlur={() => form.setFieldTouched(name, true)}
@@ -38,4 +37,4 @@ const AppReactSelectControl: React.FC<IAppReactSelectControl> = (props) => {
   );
 };
 
-export default AppReactSelectControl;
+export default AppReactSelectPaginateControl;

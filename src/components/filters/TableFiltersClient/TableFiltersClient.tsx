@@ -1,21 +1,23 @@
 import * as React from 'react';
-import "./TableFiltersClient.scss";
-import {FieldArray, FieldArrayRenderProps, Form, Formik, FormikHelpers} from 'formik';
+import { LoadOptions } from 'react-select-async-paginate';
+import './TableFiltersClient.scss';
+import { FieldArray, FieldArrayRenderProps, Form, Formik, FormikHelpers } from 'formik';
 import filterSchema from '../../ui/controls/validations';
 import FiltersRow from '../FiltersRow/FiltersRow';
-import {FilterResponseItem, InitialUILParseData, InitialValues, InitialValuesItem} from '../../../types/filter';
-import {fillSavedFilterRowWithExtraData, transformResponseFilters} from '../../../helpers/transforms';
+import { FilterResponseItem, InitialUILParseData, InitialValues, InitialValuesItem } from '../../../types/filter';
+import { fillSavedFilterRowWithExtraData, transformResponseFilters } from '../../../helpers/transforms';
 
 export interface ITableFiltersClient {
+  onLoadSourceOptions: (filterId: string) => LoadOptions<any, any, any>;
   onSubmitFilterForm: (outputData: InitialUILParseData) => void;
   onRemoveFilter?: (index: number) => void;
   onAddFilter?: (fieldArrayProps: FieldArrayRenderProps) => void;
-  initialFilters: InitialUILParseData; //InitialValues;
-  filtersTypesList: Array<FilterResponseItem>; //Array<FilterTransformedItem>;
+  initialFilters: InitialUILParseData; // InitialValues;
+  filtersTypesList: Array<FilterResponseItem>; // Array<FilterTransformedItem>;
 }
 
 const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
-  const {onSubmitFilterForm, initialFilters, filtersTypesList, onRemoveFilter, onAddFilter} = props;
+  const { onSubmitFilterForm, initialFilters, filtersTypesList, onRemoveFilter, onAddFilter, onLoadSourceOptions } = props;
 
   // transform server data
   const transformed = transformResponseFilters(filtersTypesList);
@@ -25,7 +27,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
 
   const submitForm = (values: InitialValues, helpers: FormikHelpers<InitialValues>) => {
     const forSerialization = values.filters.map((item) => {
-      const {id, ...rest} = item;
+      const { id, ...rest } = item;
 
       return {
         ...rest,
@@ -50,8 +52,8 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
       <Form>
         <FieldArray name="filters">
           {(fieldArrayProps) => {
-            const {form, push, remove} = fieldArrayProps;
-            const {filters} = form.values;
+            const { form, push, remove } = fieldArrayProps;
+            const { filters } = form.values;
 
             const onRemove = (index: number) => {
               remove(index);
@@ -90,6 +92,8 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                     return (
                       <li className="filter-list__item" key={index}>
                         <FiltersRow
+                          loadOptions={onLoadSourceOptions(row?.id?.value)}
+                          type={row?.id?.type}
                           onChangeIdSelect={onChangeIdSelect}
                           idOptions={transformed}
                           operatorOptions={row?.id?.operators}

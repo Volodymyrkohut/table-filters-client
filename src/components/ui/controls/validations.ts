@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 const filterSchema = Yup.object().shape({
   filters: Yup.array().of(
     Yup.object().shape({
+      // filterType: Yup.string().required(),
       id: Yup.object()
         .shape({
           label: Yup.string().required('Це поле є обовязковим для заповнення'),
@@ -26,5 +27,11 @@ const filterSchema = Yup.object().shape({
   // .required('Добавте фільтр') // these constraints are shown if and only if inner constraints are satisfied
   // .min(3, 'Мінімальна кількість фільтрів - 3'),
 });
-
+// Yup.object().when('filterType', {
+//   is: 'number',
+//   then: Yup.object().shape({
+//     label: Yup.string().required('Це поле є обовязковим для заповнення 1'),
+//     value: Yup.string().required('Це поле є обовязковим для заповнення 1'),
+//   }),
+// })
 export default filterSchema;

@@ -8,9 +8,9 @@ export type FilterType =
   | typeof TYPE_ENUM
   | typeof TYPE_SOURCE;
 
-export type Operators = '<' | '<=' | '>' | '>=' | '=' | '!=';
+export type Operators = '<' | '<=' | '>' | '>=' | '=' | '!=' | string;
 export type ReactSelectOption = { value: string; label: string };
-export type OperatorOptions = Array<{key: Operators; value: Operators}>
+export type OperatorOptions = Array<{ key: Operators; value: Operators }>;
 
 export interface FilterResponseItem {
   caption: string;

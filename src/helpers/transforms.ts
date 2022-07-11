@@ -7,14 +7,14 @@ export const fillSavedFilterRowWithExtraData = (
 ): InitialValues => {
   const inputFilterItems = initialSavedFilters.filters?.length
     ? initialSavedFilters.filters.map((initial) => {
-      const row = filtersData.find((item) => initial.id.value === item.value);
+        const row = filtersData.find((item) => initial.id.value === item.value);
 
-      return {
-        values: initial.values, // || [],
-        operator: initial.operator,
-        id: row as FilterTransformedItem,
-      };
-    })
+        return {
+          values: initial.values, // || [],
+          operator: initial.operator,
+          id: row as FilterTransformedItem,
+        };
+      })
     : [];
 
   return {

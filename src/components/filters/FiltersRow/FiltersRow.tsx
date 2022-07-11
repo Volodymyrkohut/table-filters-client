@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { OperatorOptions } from '../../../types/filter';
+import { LoadOptions } from 'react-select-async-paginate';
+import { FilterType, OperatorOptions } from '../../../types/filter';
 import AppReactSelectControl from '../../ui/controls/AppReactSelectControl';
 import AppSelectControl from '../../ui/controls/AppSelectControl';
+import FilterSwitchValueField from '../FilterSwitchValueField/FilterSwitchValueField';
 
 export interface IReactSelectOption {
   label: string;
@@ -9,16 +11,18 @@ export interface IReactSelectOption {
 }
 
 export interface IFiltersRow {
+  loadOptions: LoadOptions<any, any, any>;
   idOptions: Array<IReactSelectOption>;
   operatorOptions: OperatorOptions;
   valueOptions: Array<IReactSelectOption> | null;
   onRemove: (index: number) => void;
   onChangeIdSelect: (value: any) => void;
   index: number;
+  type: FilterType;
 }
 
 const FiltersRow: React.FC<IFiltersRow> = (props) => {
-  const { idOptions, operatorOptions, valueOptions, onRemove, onChangeIdSelect, index } = props;
+  const { idOptions, loadOptions, operatorOptions, type, valueOptions, onRemove, onChangeIdSelect, index } = props;
 
   return (
     <div className="filter-row">
@@ -29,7 +33,13 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
         <AppSelectControl name={`filters[${index}].operator`} options={operatorOptions} />
       </div>
       <div className="filter-row__field filter-row__field__values">
-        <AppReactSelectControl name={`filters[${index}].values`} options={valueOptions} isMulti type="creatable" />
+        <FilterSwitchValueField
+          name={`filters[${index}].values`}
+          type={type}
+          valueOptions={valueOptions}
+          loadOptions={loadOptions}
+        />
+        {type}
       </div>
 
       <div className="filter-row__field filter-row__remove">
