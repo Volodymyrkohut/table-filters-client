@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { LoadOptions } from 'react-select-async-paginate';
 import { FilterType, OperatorOptions } from '../../../types/filter';
+import FilterSwitchValueField from '../FilterSwitchValueField/FilterSwitchValueField';
 import AppReactSelectControl from '../../ui/controls/AppReactSelectControl';
 import AppSelectControl from '../../ui/controls/AppSelectControl';
-import FilterSwitchValueField from '../FilterSwitchValueField/FilterSwitchValueField';
 
 export interface IReactSelectOption {
   label: string;

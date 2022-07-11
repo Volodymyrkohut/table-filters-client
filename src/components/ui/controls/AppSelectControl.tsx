@@ -1,4 +1,4 @@
-import React, { FC, HTMLProps } from 'react';
+import * as React from 'react';
 import { Field, FieldProps } from 'formik';
 import ControlLayout from './components/LayoutControl/LayoutControl';
 import Select from '../fields/Select/Select';
@@ -9,11 +9,11 @@ type FormOptionType = {
   disabled?: boolean;
 };
 
-export interface IAppSelectControl extends HTMLProps<HTMLSelectElement> {
+export interface IAppSelectControl extends React.HTMLProps<HTMLSelectElement> {
   options: Array<FormOptionType | any>;
 }
 
-const AppSelectControl: FC<IAppSelectControl> = (props) => {
+const AppSelectControl: React.FC<IAppSelectControl> = (props) => {
   const { name, options = [], disabled, label, id } = props;
 
   return (

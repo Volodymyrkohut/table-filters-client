@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import * as React from 'react';
 import { LoadOptions } from 'react-select-async-paginate';
 import { TYPE_BOOLEAN, TYPE_DATE, TYPE_ENUM, TYPE_NUMBER, TYPE_SOURCE, TYPE_STRING } from '../../../const/filters-const';
 import AppReactSelectPaginateControl from '../../ui/controls/AppReactSelectPaginateControl';
@@ -13,7 +13,7 @@ interface IFilterSwitchValueField {
   loadOptions: LoadOptions<any, any, any>;
 }
 
-const FilterSwitchValueField: FC<IFilterSwitchValueField> = ({ type, name, valueOptions, loadOptions }) => {
+const FilterSwitchValueField: React.FC<IFilterSwitchValueField> = ({ type, name, valueOptions, loadOptions }) => {
   switch (type) {
     case TYPE_SOURCE:
       return <AppReactSelectPaginateControl name={name} isMulti loadOptions={loadOptions} />;

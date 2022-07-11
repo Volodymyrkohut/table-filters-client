@@ -8,7 +8,7 @@ https://github.com/AND48/table-filters
 ## Installation
 
 ```bash
- yarn install table-filters-client
+ yarn add table-filters-client
 ```
 
 or
