@@ -10,6 +10,15 @@ interface Response {
   };
 }
 
+interface ResponseSource {
+  data: {
+    data: Array<{
+      id: number;
+      name: string;
+    }>;
+  };
+}
+
 const FiltersTablePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,18 +35,12 @@ const FiltersTablePage = () => {
           },
         }
       );
-
-      type Data = Array<{ id: number; code: string }>;
-
-      const data: Data = await response.json();
-
-      const transformed = data.map((item: { id: number; code: string }) => ({ value: String(item.id), label: item.code }));
-      console.log('ressss', transformed);
-      const hasMore = transformed && transformed.length && transformed.length > prevOptions.length + 10;
+      const data: ResponseSource = await response.json();
+      const transformed = data.data.map((item: { id: number; name: string }) => ({ value: String(item.id), label: item.name }));
 
       return {
         options: transformed,
-        hasMore,
+        hasMore: true,
         additional: {
           page: page + 1,
         },

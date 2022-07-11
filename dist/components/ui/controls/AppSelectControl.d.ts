@@ -1,11 +1,11 @@
-import { FC, HTMLProps } from 'react';
+import * as React from 'react';
 declare type FormOptionType = {
     value: string;
     key: string;
     disabled?: boolean;
 };
-export interface IAppSelectControl extends HTMLProps<HTMLSelectElement> {
+export interface IAppSelectControl extends React.HTMLProps<HTMLSelectElement> {
     options: Array<FormOptionType | any>;
 }
-declare const AppSelectControl: FC<IAppSelectControl>;
+declare const AppSelectControl: React.FC<IAppSelectControl>;
 export default AppSelectControl;
