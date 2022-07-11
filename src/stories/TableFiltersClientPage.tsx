@@ -33,7 +33,7 @@ const FiltersTablePage = () => {
 
       const transformed = data.map((item: { id: number; code: string }) => ({ value: String(item.id), label: item.code }));
       console.log('ressss', transformed);
-      const hasMore = transformed.length > prevOptions.length + 10;
+      const hasMore = transformed && transformed.length && transformed.length > prevOptions.length + 10;
 
       return {
         options: transformed,

@@ -36,6 +36,22 @@ const FiltersTable = () => {
       });
   }, []);
 
+  const onLoadSourceOptions = (filterId: string) => {
+    return async (inputValue, prevOptions, { page }) => {
+      const response = await fetch(`/filters/${filterId}/source-data?query=${inputValue}&page=${page}`);
+      const options = await response.json(); // [{ value, label }]
+      const hasMore = transformed.length > prevOptions.length + 10;
+      
+      return {
+        options,
+        hasMore,
+        additional: {
+          page: page + 1,
+        },
+      };
+    };
+  };
+
   // receive filters from url
   const initialFilters = parseUrl<InitialUILParseData>(location.search.slice(1));
 
@@ -55,6 +71,7 @@ const FiltersTable = () => {
       onSubmitFilterForm={submitForm} /*  submit */
       initialFilters={initialFilters} /* from url or localstorage */
       filtersTypesList={filters} /* list from server */
+      onLoadSourceOptions={onLoadSourceOptions}
     />
   );
 };
