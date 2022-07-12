@@ -12,7 +12,7 @@ esbuild.build({
   // external:['react'],
   format: 'esm',
   target: 'esnext',
-  plugins: [sassPlugin(),nodeExternalsPlugin()],
+  plugins: [sassPlugin({type: "css-text"}),nodeExternalsPlugin()],
 })
 
 esbuild.build({
@@ -24,5 +24,5 @@ esbuild.build({
   format: 'cjs',
   // external:['react'],
   target: 'esnext',
-  plugins: [sassPlugin(),nodeExternalsPlugin()],
+  plugins: [sassPlugin({type: "css-text"}),nodeExternalsPlugin()],
 })

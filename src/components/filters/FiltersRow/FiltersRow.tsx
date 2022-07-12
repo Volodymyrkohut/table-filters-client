@@ -38,7 +38,7 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
       </div>
 
       <div className="filter-row__field filter-row__remove">
-        <RemoveButton onChange={() => onRemove(index)} />
+        <RemoveButton onClick={() => onRemove(index)} />
       </div>
     </div>
   );

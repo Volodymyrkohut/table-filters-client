@@ -92,7 +92,7 @@ const FiltersTablePage = () => {
       operatorLabelText="Оператор"
       valuesLabelText="Значення"
       addFilterButtonText="+ Додати фільтр"
-      submitFilterButtonText="Застусувати фільтр"
+      submitFilterButtonText="Застосувати фільтр"
     />
   );
 };
