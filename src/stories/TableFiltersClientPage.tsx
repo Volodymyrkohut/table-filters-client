@@ -7,6 +7,7 @@ import { stringifyUrl, parseUrl } from './helpers';
 interface Response {
   meta: {
     filters: Array<FilterResponseItem>;
+    data: Array<any>;
   };
 }
 
