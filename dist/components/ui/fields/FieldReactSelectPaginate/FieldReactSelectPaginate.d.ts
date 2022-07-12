@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { AsyncPaginateProps } from 'react-select-async-paginate';
-interface PropsType extends AsyncPaginateProps<any, any, any, any> {
+import { AsyncPaginateType } from '../../../../types/filter';
+export interface Props extends AsyncPaginateType {
     isError?: boolean;
 }
-declare const FieldReactSelectPaginate: React.FC<PropsType>;
+declare const FieldReactSelectPaginate: React.FC<Props>;
 export default FieldReactSelectPaginate;

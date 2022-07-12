@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { LoadOptions } from 'react-select-async-paginate';
-import { FilterType } from '../../../types/filter';
-import { IReactSelectOption } from '../FiltersRow/FiltersRow';
-interface IFilterSwitchValueField {
+import { FilterType, LoadOptionsType, ReactSelectOption } from '../../../types/filter';
+export interface FilterSwitchValueFieldProps {
     type: FilterType;
     name: string;
-    valueOptions: Array<IReactSelectOption> | null;
-    loadOptions: LoadOptions<any, any, any>;
+    valueOptions: Array<ReactSelectOption> | null;
+    loadOptions: LoadOptionsType;
 }
-declare const FilterSwitchValueField: React.FC<IFilterSwitchValueField>;
+declare const FilterSwitchValueField: React.FC<FilterSwitchValueFieldProps>;
 export default FilterSwitchValueField;

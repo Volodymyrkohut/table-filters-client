@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { LoadOptions } from 'react-select-async-paginate';
 import './TableFiltersClient.scss';
 import { FieldArrayRenderProps } from 'formik';
-import { FilterResponseItem, InitialUILParseData } from '../../../types/filter';
+import { FilterResponseItem, InitialUILParseData, LoadOptionsType } from '../../../types/filter';
 export interface ITableFiltersClient {
-    onLoadSourceOptions: (filterId: string) => LoadOptions<any, any, any>;
+    onLoadSourceOptions: (filterId: string) => LoadOptionsType;
     onSubmitFilterForm: (outputData: InitialUILParseData) => void;
     onRemoveFilter?: (index: number) => void;
     onAddFilter?: (fieldArrayProps: FieldArrayRenderProps) => void;

@@ -34,8 +34,6 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
           valueOptions={valueOptions}
           loadOptions={loadOptions}
         />
-        {/* <AppInputControl name={`filters[${index}].filterType`} /> */}
-        {filterType}
       </div>
 
       <div className="filter-row__field filter-row__remove">
