@@ -9,18 +9,25 @@ export interface FilterSwitchValueFieldProps {
   name: string;
   valueOptions: Array<ReactSelectOption> | null;
   loadOptions: LoadOptionsType;
+  classNamePrefix?: string;
 }
 
-const FilterSwitchValueField: React.FC<FilterSwitchValueFieldProps> = ({ type, name, valueOptions, loadOptions }) => {
+const FilterSwitchValueField: React.FC<FilterSwitchValueFieldProps> = ({
+  type,
+  name,
+  valueOptions,
+  loadOptions,
+  classNamePrefix,
+}) => {
   switch (type) {
     case TYPE_SOURCE:
-      return <AppReactSelectPaginateControl name={name} isMulti loadOptions={loadOptions} />;
+      return <AppReactSelectPaginateControl name={name} isMulti loadOptions={loadOptions} classNamePrefix={classNamePrefix} />;
     case TYPE_STRING || TYPE_BOOLEAN || TYPE_DATE || TYPE_ENUM || TYPE_NUMBER:
-      return <AppReactSelectControl name={name} isMulti />;
+      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} />;
     case TYPE_ENUM:
-      return <AppReactSelectControl name={name} options={valueOptions} isMulti />;
+      return <AppReactSelectControl name={name} options={valueOptions} isMulti classNamePrefix={classNamePrefix} />;
     default:
-      return <AppReactSelectControl name={name} isMulti />;
+      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} />;
   }
 };
 

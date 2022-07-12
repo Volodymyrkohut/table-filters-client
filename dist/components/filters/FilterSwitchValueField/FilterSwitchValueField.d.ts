@@ -5,6 +5,7 @@ export interface FilterSwitchValueFieldProps {
     name: string;
     valueOptions: Array<ReactSelectOption> | null;
     loadOptions: LoadOptionsType;
+    classNamePrefix?: string;
 }
 declare const FilterSwitchValueField: React.FC<FilterSwitchValueFieldProps>;
 export default FilterSwitchValueField;

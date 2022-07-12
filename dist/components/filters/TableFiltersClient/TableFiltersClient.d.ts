@@ -9,6 +9,11 @@ export interface ITableFiltersClient {
     onAddFilter?: (fieldArrayProps: FieldArrayRenderProps) => void;
     initialFilters: InitialUILParseData;
     filtersTypesList: Array<FilterResponseItem>;
+    addFilterButtonText: string;
+    submitFilterButtonText: string;
+    idLabelText?: string;
+    operatorLabelText?: string;
+    valuesLabelText?: string;
 }
 declare const TableFiltersClient: React.FC<ITableFiltersClient>;
 export default TableFiltersClient;

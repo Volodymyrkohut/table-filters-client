@@ -1,0 +1,13 @@
+.field-select{
+  position: relative;
+
+  select{
+
+  }
+
+  svg{
+    position: absolute;
+    top: calc(50% - 10px);
+    right: 8px;
+  }
+}

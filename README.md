@@ -92,6 +92,11 @@ const FiltersTable = () => {
       initialFilters={initialFilters} /* from url or localstorage */
       filtersTypesList={filters} /* list from server */
       onLoadSourceOptions={onLoadSourceOptions}
+      idLabelText="Field"
+      operatorLabelText="Operator"
+      valuesLabelText="Values"
+      addFilterButtonText="+ Add filter"
+      submitFilterButtonText="Apply"
     />
   );
 };

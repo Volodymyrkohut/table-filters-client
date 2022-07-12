@@ -23,10 +23,27 @@ export interface ITableFiltersClient {
   onAddFilter?: (fieldArrayProps: FieldArrayRenderProps) => void;
   initialFilters: InitialUILParseData; // InitialValues;
   filtersTypesList: Array<FilterResponseItem>; // Array<FilterTransformedItem>;
+  addFilterButtonText: string;
+  submitFilterButtonText: string;
+  idLabelText?: string;
+  operatorLabelText?: string;
+  valuesLabelText?: string;
 }
 
 const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
-  const { onSubmitFilterForm, initialFilters, filtersTypesList, onRemoveFilter, onAddFilter, onLoadSourceOptions } = props;
+  const {
+    onSubmitFilterForm,
+    initialFilters,
+    filtersTypesList,
+    onRemoveFilter,
+    onAddFilter,
+    onLoadSourceOptions,
+    addFilterButtonText,
+    submitFilterButtonText,
+    idLabelText,
+    operatorLabelText,
+    valuesLabelText,
+  } = props;
 
   // transform server data
   const transformed = transformResponseFilters(filtersTypesList);
@@ -77,6 +94,11 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
 
             return (
               <div className="filter-list">
+                <div className="filter-list-labels">
+                  <label>{idLabelText}</label>
+                  <label>{operatorLabelText}</label>
+                  <label>{valuesLabelText}</label>
+                </div>
                 <ul className="filter-list__items">
                   {filters.map((row: InitialValuesItem, index: number) => {
                     // clear operator's select and values select
@@ -104,14 +126,16 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
 
                 <div className="filter-list__button">
                   <button type="button" onClick={addFilter}>
-                    add one more filter
+                    {addFilterButtonText}
                   </button>
                 </div>
               </div>
             );
           }}
         </FieldArray>
-        <button type="submit">Застусувати фільтр</button>
+        <div className="filter-list-submit">
+          <button type="submit">{submitFilterButtonText}</button>
+        </div>
       </Form>
     </Formik>
   );

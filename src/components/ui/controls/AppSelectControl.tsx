@@ -14,7 +14,7 @@ export interface IAppSelectControl extends React.HTMLProps<HTMLSelectElement> {
 }
 
 const AppSelectControl: React.FC<IAppSelectControl> = (props) => {
-  const { name, options = [], disabled, label, id } = props;
+  const { name, options = [], disabled, label, id, className } = props;
 
   return (
     <Field name={name}>
@@ -24,7 +24,7 @@ const AppSelectControl: React.FC<IAppSelectControl> = (props) => {
 
         return (
           <ControlLayout isError={isError} error={meta.error} label={label}>
-            <Select id={id} {...field} isError={isError} disabled={disabled}>
+            <Select id={id} {...field} isError={isError} disabled={disabled} className={className}>
               {options.map((option: FormOptionType) => (
                 <option key={option.value} value={option.value}>
                   {option.key}

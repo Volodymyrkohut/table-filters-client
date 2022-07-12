@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './LayoutControl.scss';
 import classNames from 'classnames';
+import IconImportant from '../../../icons/fields/IconImportant';
 
 interface IProps {
   isError?: boolean;
@@ -16,8 +17,15 @@ const ControlLayout: React.FC<IProps> = (props) => {
   return (
     <div className={classes}>
       {label && <label>{label}</label>}
-      {children}
-      <span className="field-control__error">{isError && <span>{error}</span>}</span>
+      <div className="field-control__field">{children}</div>
+      <span className="field-control__error">
+        {isError && (
+          <span>
+            <IconImportant />
+            {error}
+          </span>
+        )}
+      </span>
     </div>
   );
 };

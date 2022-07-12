@@ -1,38 +1,174 @@
 button {
-  height: 38px;
+  //height: 38px;
 }
 
-.filter-list{
-  &__items{
+%button {
+  margin-bottom: 20px;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0747a6;
+  cursor: pointer;
+}
+
+.filter-list {
+  &__items {
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  &__item{
-
-  }
-  &__button{
-    margin-bottom: 20px;
+  &__item {
   }
 
+  &__button {
+    button {
+      @extend %button;
+    }
+  }
+}
+.filter-list-submit {
+  button {
+    @extend %button;
+  }
 }
 
+.filter-list-labels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-bottom: 9px;
+  max-width: 1000px;
+  gap: 8px;
 
+  label {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #6b778c;
+  }
+}
+
+.select-values__control,
+.select-id__control {
+  background: #f4f5f7 !important;
+  border-color: #f4f5f7 !important;
+  min-height: 40px !important;
+}
+
+.select-id__control {
+  .select-id__indicator-separator {
+    display: none;
+  }
+  .select-id__single-value {
+    color: #7a869a;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .select-id__indicator {
+    svg {
+      fill: #172b4d;
+    }
+  }
+}
+
+.field-select {
+  select {
+    appearance: none;
+    background: #f4f5f7;
+    border-color: #f4f5f7;
+    width: 100%;
+    height: 100%;
+    min-height: 40px;
+    border-radius: 3px;
+    padding: 0 8px;
+    color: #7a869a;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.select-values__control {
+  .select-values__indicator-separator {
+    display: none;
+  }
+
+  .select-values__multi-value__label {
+    color: #172b4d;
+  }
+
+  .select-values__multi-value {
+    background: #dfe1e6;
+  }
+
+  .select-values__clear-indicator,
+  .select-values__multi-value__remove,
+  .select-values__dropdown-indicator {
+    svg {
+      fill: #172b4d;
+    }
+  }
+  .select-values__clear-indicator {
+    background: #7a869a;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 1px;
+
+    svg {
+      width: 13px;
+      height: 13px;
+      fill: white;
+    }
+  }
+}
 
 .filter-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 16px;
   max-width: 1000px;
 
+  &__remove {
+    display: flex;
+    align-items: center;
+  }
   &__field {
     &__values {
     }
     &__operator {
     }
     &__id {
+    }
+  }
+}
+
+.field-control {
+  &.isError {
+    .field-control__field {
+      select,
+      .select-values__control,
+      .select-id__control {
+        box-shadow: inset 0px 0px 0px 2px #de350b;
+      }
+    }
+  }
+
+  &__error {
+    span {
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      color: #de350b;
+      margin-top: 4px;
+    }
+    svg {
+      margin-right: 3px;
     }
   }
 }

@@ -88,6 +88,11 @@ const FiltersTablePage = () => {
       onSubmitFilterForm={submitForm} /*  after submit */
       initialFilters={initialFilters} /* from url or localstorage */
       filtersTypesList={filters} /* list from server */
+      idLabelText="Поле"
+      operatorLabelText="Оператор"
+      valuesLabelText="Значення"
+      addFilterButtonText="+ Додати фільтр"
+      submitFilterButtonText="Застусувати фільтр"
     />
   );
 };
