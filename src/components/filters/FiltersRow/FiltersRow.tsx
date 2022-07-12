@@ -3,6 +3,7 @@ import { FilterType, LoadOptionsType, OperatorOptions, ReactSelectOption } from 
 import FilterSwitchValueField from '../FilterSwitchValueField/FilterSwitchValueField';
 import AppReactSelectControl from '../../ui/controls/AppReactSelectControl';
 import AppSelectControl from '../../ui/controls/AppSelectControl';
+import AppInputControl from '../../ui/controls/AppInputControl';
 
 export interface IFiltersRow {
   loadOptions: LoadOptionsType;
@@ -12,11 +13,11 @@ export interface IFiltersRow {
   onRemove: (index: number) => void;
   onChangeIdSelect: (value: any) => void;
   index: number;
-  type: FilterType;
+  filterType: FilterType;
 }
 
 const FiltersRow: React.FC<IFiltersRow> = (props) => {
-  const { idOptions, loadOptions, operatorOptions, type, valueOptions, onRemove, onChangeIdSelect, index } = props;
+  const { idOptions, loadOptions, operatorOptions, filterType, valueOptions, onRemove, onChangeIdSelect, index } = props;
 
   return (
     <div className="filter-row">
@@ -29,11 +30,12 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
       <div className="filter-row__field filter-row__field__values">
         <FilterSwitchValueField
           name={`filters[${index}].values`}
-          type={type}
+          type={filterType}
           valueOptions={valueOptions}
           loadOptions={loadOptions}
         />
-        {type}
+        {/* <AppInputControl name={`filters[${index}].filterType`} /> */}
+        {filterType}
       </div>
 
       <div className="filter-row__field filter-row__remove">

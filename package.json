@@ -22,7 +22,7 @@
       "pre-commit": "yarn run build && yarn run test"
     }
   },
-  "author": "",
+  "author": "Volodymyr Kohut",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.18.6",

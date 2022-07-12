@@ -80,7 +80,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                 <ul className="filter-list__items">
                   {filters.map((row: InitialValuesItem, index: number) => {
                     // clear operator's select and values select
-                    const onChangeIdSelect = (value: any) => {
+                    const onChangeIdSelect = () => {
                       form.setFieldValue(`filters[${index}].operator`, '');
                       form.setFieldValue(`filters[${index}].values`, null);
                     };
@@ -89,7 +89,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                       <li className="filter-list__item" key={index}>
                         <FiltersRow
                           loadOptions={onLoadSourceOptions(row?.id?.value)}
-                          type={row?.id?.type}
+                          filterType={row?.id?.type}
                           onChangeIdSelect={onChangeIdSelect}
                           idOptions={transformed}
                           operatorOptions={row?.id?.operators}
