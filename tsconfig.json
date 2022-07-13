@@ -12,8 +12,14 @@
     "sourceMap": true,
     "outDir": "dist",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "./src/stories", ".eslintrc.js"]
+  "exclude": ["node_modules", "dist", "./src/stories", ".eslintrc.js"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
