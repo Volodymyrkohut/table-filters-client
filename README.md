@@ -16,11 +16,12 @@ or
 ```bash
  npm install table-filters-client
 ```
+## Preview
+![My image](src/assets/images/img.png)
 
 ## Usage
-
 ```typescript jsx
-import { TableFiltersClient, FilterResponseItem, InitialUILParseData } from 'table-filters-client';
+import { TableFiltersClient, FilterResponseItem, InitialFiltersWithoutExtraData } from 'table-filters-client';
 import "../node_modules/table-filters-client/dist/index.css"
 import { stringifyUrl, parseUrl } from './helpers';
 
@@ -58,7 +59,7 @@ const FiltersTable = () => {
   const onLoadSourceOptions = (filterId: string) => {
     return async (inputValue, prevOptions, { page }) => {
       const response = await fetch(`/filters/${filterId}/source-data?query=${inputValue}&page=${page}`);
-      const data = await response.json();
+      const data: ResponseSource = await response.json();
 
       return {
         options: data.options, // [{ value, label }]
@@ -71,11 +72,11 @@ const FiltersTable = () => {
   };
 
   // receive filters from url
-  const initialFilters = parseUrl<InitialUILParseData>(queryString.slice(1));
+  const initialFilters = parseUrl<InitialFiltersWithoutExtraData>(queryString.slice(1));
 
 
-  const submitForm = (data: InitialUILParseData) => {
-    // to send the filter to the server, you can use the transform for the data here
+  const submitForm = (data: InitialFiltersWithoutExtraData) => {
+    // fetch data by using data
     
     // save filters to url
     navigate(`?${stringifyUrl(data)}`);
@@ -176,4 +177,3 @@ export const parseUrl = function <R>(queryParams: string, options?: IParseOption
 };
 ```
 
-## Contributing

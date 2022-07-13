@@ -1,8 +1,8 @@
 // transform data for formik
-import { FilterResponseItem, FilterTransformedItem, InitialUILParseData, InitialValues } from '../types/filter';
+import { FilterResponseItem, FilterTransformedItem, InitialFiltersWithoutExtraData, InitialValues } from '../types/filter';
 
 export const fillSavedFilterRowWithExtraData = (
-  initialSavedFilters: InitialUILParseData,
+  initialSavedFilters: InitialFiltersWithoutExtraData,
   filtersData: Array<FilterTransformedItem>
 ): InitialValues => {
   const inputFilterItems = initialSavedFilters.filters?.length
@@ -46,13 +46,13 @@ export const transformResponseFilters = (filters: Array<FilterResponseItem>): Ar
       label: caption,
       value: String(id),
       values: transformedValue,
-      operators: [{ key: 'Виберіть оператор', value: '' }, ...transformedOperators],
+      operators: [{ key: '', value: '' }, ...transformedOperators],
       ...rest,
     };
   }) as Array<FilterTransformedItem>;
 };
 
-export const transformWithoutUselessData = (formikData: InitialValues): InitialUILParseData => {
+export const transformWithoutUselessData = (formikData: InitialValues): InitialFiltersWithoutExtraData => {
   const forSerialization = formikData.filters.map((item) => {
     const { id, ...rest } = item;
 
@@ -65,7 +65,7 @@ export const transformWithoutUselessData = (formikData: InitialValues): InitialU
     };
   });
 
-  const outputData: InitialUILParseData = {
+  const outputData: InitialFiltersWithoutExtraData = {
     filters: forSerialization,
   };
 

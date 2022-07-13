@@ -1,5 +1,24 @@
-button {
-  //height: 38px;
+:root {
+  --error-color: #de350b;
+  --focus-color: #4c9aff;
+
+  --field-border-error-color: var(--error-color);
+  --field-border-focus-color: #4c9aff;
+  --field-border-default-color: #f4f5f7;
+
+  --field-background-default: #f4f5f7;
+  --field-background-error: white;
+  --field-background-focus: white;
+
+  --field-border-radius: 3px;
+
+  --filter-max-with: 1000px;
+  --filter-min-with: 500px;
+}
+
+%filter-with{
+  max-width: var(--filter-max-with);
+  min-width: var(--filter-min-with);
 }
 
 %button {
@@ -15,6 +34,17 @@ button {
   cursor: pointer;
 }
 
+%filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr auto;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  @extend %filter-with;
+}
+
 .filter-list {
   &__items {
     list-style: none;
@@ -24,24 +54,18 @@ button {
 
   &__item {
   }
-
-  &__button {
-    button {
-      @extend %button;
-    }
-  }
 }
-.filter-list-submit {
+
+.filter-list-button {
   button {
     @extend %button;
   }
 }
 
 .filter-list-labels {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  @extend %filter-grid;
+  @extend %filter-with;
   margin-bottom: 9px;
-  max-width: 1000px;
   gap: 8px;
 
   label {
@@ -50,13 +74,6 @@ button {
     line-height: 16px;
     color: #6b778c;
   }
-}
-
-.select-values__control,
-.select-id__control {
-  background: #f4f5f7 !important;
-  border-color: #f4f5f7 !important;
-  min-height: 40px !important;
 }
 
 .select-id__control {
@@ -83,7 +100,6 @@ button {
     width: 100%;
     height: 100%;
     min-height: 40px;
-    border-radius: 3px;
     padding: 0 8px;
     color: #7a869a;
     font-size: 14px;
@@ -112,10 +128,14 @@ button {
     }
   }
   .select-values__clear-indicator {
-    background: #7a869a;
+    background-color: #a4adb9;
     cursor: pointer;
     border-radius: 50%;
     padding: 1px;
+
+    &:hover {
+      background: var(--error-color);
+    }
 
     svg {
       width: 13px;
@@ -126,11 +146,10 @@ button {
 }
 
 .filter-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  @extend %filter-grid;
+  @extend %filter-with;
   gap: 8px;
   margin-bottom: 16px;
-  max-width: 1000px;
 
   &__remove {
     display: flex;
@@ -147,16 +166,50 @@ button {
 }
 
 .field-control {
+  .field-control__field {
+    // dropdown icon
+    .select-values__dropdown-indicator,
+    .select-id__dropdown-indicator,
+    .field-select {
+      svg {
+        width: 16px;
+      }
+    }
+
+    // field default state
+    select,
+    .select-values__control,
+    .select-id__control {
+      min-height: 40px;
+      border-radius: var(--field-border-radius);
+      border: none;
+      outline: none;
+      box-shadow: inset 0px 0px 0px 2px var(--field-border-default-color);
+      background-color: var(--field-background-default);
+
+      &--is-focused,
+      &:focus {
+        border: none;
+        outline: none;
+        background-color: var(--field-background-focus);
+        box-shadow: inset 0 0 0 2px var(--field-border-focus-color);
+      }
+    }
+  }
+
+  // error field
   &.isError {
     .field-control__field {
       select,
       .select-values__control,
       .select-id__control {
-        box-shadow: inset 0px 0px 0px 2px #de350b;
+        background-color: var(--field-background-error);
+        box-shadow: inset 0 0 0 2px var(--field-border-error-color);
       }
     }
   }
 
+  // error message
   &__error {
     span {
       display: flex;
@@ -164,7 +217,7 @@ button {
       font-weight: 400;
       font-size: 12px;
       line-height: 16px;
-      color: #de350b;
+      color: var(--field-border-error-color);
       margin-top: 4px;
     }
     svg {

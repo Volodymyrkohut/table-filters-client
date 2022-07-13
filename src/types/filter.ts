@@ -34,8 +34,8 @@ export interface FilterTransformedItem {
   type: FilterType;
 }
 
-// from url
-export interface InitialUILParseData {
+// from store as search params or localstorage
+export interface InitialFiltersWithoutExtraData {
   filters: Array<{
     id: ReactSelectOption;
     values: Array<ReactSelectOption>;

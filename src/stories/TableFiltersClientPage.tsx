@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { TableFiltersClient, FilterResponseItem, LoadOptionsType, InitialUILParseData } from '../../dist';
-
-// import { InitialUILParseData, FilterResponseItem, LoadOptionsType } from '../types/filter';
+// import { TableFiltersClient, FilterResponseItem, LoadOptionsType, InitialUILParseData } from '../../dist';
+import { TableFiltersClient } from '../components';
+import { InitialFiltersWithoutExtraData, FilterResponseItem, LoadOptionsType } from '../types/filter';
 import { stringifyUrl, parseUrl } from './helpers';
 
 interface Response {
@@ -70,10 +70,10 @@ const FiltersTablePage = () => {
   }, []);
 
   // receive filters from url
-  const initialFilters = parseUrl<InitialUILParseData>(queryString.slice(1));
+  const initialFilters = parseUrl<InitialFiltersWithoutExtraData>(queryString.slice(1));
 
   // save filters to url
-  const submitForm = (data: InitialUILParseData) => {
+  const submitForm = (data: InitialFiltersWithoutExtraData) => {
     navigate(`?${stringifyUrl(data)}`);
   };
 
@@ -89,11 +89,11 @@ const FiltersTablePage = () => {
       onSubmitFilterForm={submitForm} /*  after submit */
       initialFilters={initialFilters} /* from url or localstorage */
       filtersTypesList={filters} /* list from server */
-      idLabelText="Поле"
-      operatorLabelText="Оператор"
-      valuesLabelText="Значення"
-      addFilterButtonText="+ Додати фільтр"
-      submitFilterButtonText="Застосувати фільтр"
+      idLabelText="Field"
+      operatorLabelText="Operator"
+      valuesLabelText="Values"
+      addFilterButtonText="+ Add filter"
+      submitFilterButtonText="Apply"
     />
   );
 };

@@ -21,13 +21,23 @@ const FilterSwitchValueField: React.FC<FilterSwitchValueFieldProps> = ({
 }) => {
   switch (type) {
     case TYPE_SOURCE:
-      return <AppReactSelectPaginateControl name={name} isMulti loadOptions={loadOptions} classNamePrefix={classNamePrefix} />;
+      return (
+        <AppReactSelectPaginateControl
+          name={name}
+          isMulti
+          loadOptions={loadOptions}
+          classNamePrefix={classNamePrefix}
+          placeholder=""
+        />
+      );
     case TYPE_STRING || TYPE_BOOLEAN || TYPE_DATE || TYPE_ENUM || TYPE_NUMBER:
-      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} />;
+      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} placeholder="" />;
     case TYPE_ENUM:
-      return <AppReactSelectControl name={name} options={valueOptions} isMulti classNamePrefix={classNamePrefix} />;
+      return (
+        <AppReactSelectControl name={name} options={valueOptions} isMulti classNamePrefix={classNamePrefix} placeholder="" />
+      );
     default:
-      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} />;
+      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} placeholder="" />;
   }
 };
 

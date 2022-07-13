@@ -5,7 +5,7 @@ import filterSchema from '../../ui/controls/validations';
 import FiltersRow from '../FiltersRow/FiltersRow';
 import {
   FilterResponseItem,
-  InitialUILParseData,
+  InitialFiltersWithoutExtraData,
   InitialValues,
   InitialValuesItem,
   LoadOptionsType,
@@ -18,10 +18,10 @@ import {
 
 export interface ITableFiltersClient {
   onLoadSourceOptions: (filterId: string) => LoadOptionsType;
-  onSubmitFilterForm: (outputData: InitialUILParseData) => void;
+  onSubmitFilterForm: (outputData: InitialFiltersWithoutExtraData) => void;
   onRemoveFilter?: (index: number) => void;
   onAddFilter?: (fieldArrayProps: FieldArrayRenderProps) => void;
-  initialFilters: InitialUILParseData; // InitialValues;
+  initialFilters: InitialFiltersWithoutExtraData; // InitialValues;
   filtersTypesList: Array<FilterResponseItem>; // Array<FilterTransformedItem>;
   addFilterButtonText: string;
   submitFilterButtonText: string;
@@ -123,19 +123,20 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                     );
                   })}
                 </ul>
-
-                <div className="filter-list__button">
-                  <button type="button" onClick={addFilter}>
-                    {addFilterButtonText}
-                  </button>
+                <div className="button-group">
+                  <div className="filter-list-button">
+                    <button type="button" onClick={addFilter}>
+                      {addFilterButtonText}
+                    </button>
+                  </div>
+                  <div className="filter-list-button">
+                    <button type="submit">{submitFilterButtonText}</button>
+                  </div>
                 </div>
               </div>
             );
           }}
         </FieldArray>
-        <div className="filter-list-submit">
-          <button type="submit">{submitFilterButtonText}</button>
-        </div>
       </Form>
     </Formik>
   );

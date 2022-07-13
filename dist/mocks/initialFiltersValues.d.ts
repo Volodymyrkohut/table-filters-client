@@ -1,3 +1,3 @@
-import { InitialUILParseData } from '../types/filter';
-declare const initialFilterValues: InitialUILParseData;
+import { InitialFiltersWithoutExtraData } from '../types/filter';
+declare const initialFilterValues: InitialFiltersWithoutExtraData;
 export default initialFilterValues;

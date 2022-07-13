@@ -30,7 +30,7 @@ export interface FilterTransformedItem {
     operators: OperatorOptions;
     type: FilterType;
 }
-export interface InitialUILParseData {
+export interface InitialFiltersWithoutExtraData {
     filters: Array<{
         id: ReactSelectOption;
         values: Array<ReactSelectOption>;
