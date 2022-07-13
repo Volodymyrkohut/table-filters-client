@@ -1,6 +1,5 @@
+import { AsyncPaginateProps, LoadOptions } from 'react-select-async-paginate';
 import { TYPE_BOOLEAN, TYPE_DATE, TYPE_ENUM, TYPE_NUMBER, TYPE_SOURCE, TYPE_STRING } from '../const/filters-const';
-import { AsyncPaginateProps } from 'react-select-async-paginate';
-import { LoadOptions } from 'react-select-async-paginate';
 export declare type FilterType = typeof TYPE_NUMBER | typeof TYPE_STRING | typeof TYPE_BOOLEAN | typeof TYPE_DATE | typeof TYPE_ENUM | typeof TYPE_SOURCE;
 export declare type Operators = '<' | '<=' | '>' | '>=' | '=' | '!=' | string;
 export declare type ReactSelectOption = {

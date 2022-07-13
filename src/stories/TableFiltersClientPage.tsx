@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { TableFiltersClient } from '../../dist';
-import { InitialUILParseData, FilterResponseItem, LoadOptionsType } from '../types/filter';
+import { TableFiltersClient, FilterResponseItem, LoadOptionsType, InitialUILParseData } from '../../dist';
+
+// import { InitialUILParseData, FilterResponseItem, LoadOptionsType } from '../types/filter';
 import { stringifyUrl, parseUrl } from './helpers';
 
 interface Response {

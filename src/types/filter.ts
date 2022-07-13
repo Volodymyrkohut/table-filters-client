@@ -1,6 +1,5 @@
+import { AsyncPaginateProps, LoadOptions } from 'react-select-async-paginate';
 import { TYPE_BOOLEAN, TYPE_DATE, TYPE_ENUM, TYPE_NUMBER, TYPE_SOURCE, TYPE_STRING } from '../const/filters-const';
-import { AsyncPaginateProps } from 'react-select-async-paginate';
-import { LoadOptions } from 'react-select-async-paginate';
 
 export type FilterType =
   | typeof TYPE_NUMBER

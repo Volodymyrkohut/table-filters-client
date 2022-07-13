@@ -21,6 +21,7 @@ or
 
 ```typescript jsx
 import { TableFiltersClient, FilterResponseItem, InitialUILParseData } from 'table-filters-client';
+import "../node_modules/table-filters-client/dist/index.css"
 import { stringifyUrl, parseUrl } from './helpers';
 
 interface Response {

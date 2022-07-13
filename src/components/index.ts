@@ -1,1 +1,1 @@
-export {default as TableFiltersClient} from "./filters/TableFiltersClient";
+export { default as TableFiltersClient } from './filters/TableFiltersClient';
