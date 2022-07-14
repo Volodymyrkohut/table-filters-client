@@ -65,3 +65,11 @@ type Base = GroupBase<ReactSelectOption>;
 export type AsyncPaginateType = AsyncPaginateProps<ReactSelectOption, Base, Additional, boolean>;
 
 export type LoadOptionsType = LoadOptions<ReactSelectOption, Base, Additional>;
+
+// validation messages
+export interface ValidationMessage {
+  required: string;
+  date: string;
+  string: string;
+  number: string;
+}

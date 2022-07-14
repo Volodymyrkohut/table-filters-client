@@ -52,4 +52,10 @@ interface GroupBase<Option> {
 declare type Base = GroupBase<ReactSelectOption>;
 export declare type AsyncPaginateType = AsyncPaginateProps<ReactSelectOption, Base, Additional, boolean>;
 export declare type LoadOptionsType = LoadOptions<ReactSelectOption, Base, Additional>;
+export interface ValidationMessage {
+    required: string;
+    date: string;
+    string: string;
+    number: string;
+}
 export {};

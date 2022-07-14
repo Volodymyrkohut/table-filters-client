@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './TableFiltersClient.scss';
 import { FieldArray, FieldArrayRenderProps, Form, Formik, FormikHelpers } from 'formik';
 import filterSchema from '../../ui/controls/validations';
 import FiltersRow from '../FiltersRow/FiltersRow';
@@ -9,12 +8,14 @@ import {
   InitialValues,
   InitialValuesItem,
   LoadOptionsType,
+  ValidationMessage,
 } from '../../../types/filter';
 import {
   fillSavedFilterRowWithExtraData,
   transformResponseFilters,
   transformWithoutUselessData,
 } from '../../../helpers/transforms';
+import '../../../assets/index.scss';
 
 export interface ITableFiltersClient {
   onLoadSourceOptions: (filterId: string) => LoadOptionsType;
@@ -28,6 +29,7 @@ export interface ITableFiltersClient {
   idLabelText?: string;
   operatorLabelText?: string;
   valuesLabelText?: string;
+  validationMessages?: ValidationMessage;
 }
 
 const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
@@ -43,6 +45,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
     idLabelText,
     operatorLabelText,
     valuesLabelText,
+    validationMessages,
   } = props;
 
   // transform server data
@@ -61,7 +64,12 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
   };
 
   return (
-    <Formik onSubmit={submitForm} initialValues={initialValue} validationSchema={filterSchema} enableReinitialize>
+    <Formik
+      onSubmit={submitForm}
+      initialValues={initialValue}
+      validationSchema={filterSchema(validationMessages)}
+      enableReinitialize
+    >
       <Form>
         <FieldArray name="filters">
           {(fieldArrayProps) => {
@@ -98,6 +106,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                   <label>{idLabelText}</label>
                   <label>{operatorLabelText}</label>
                   <label>{valuesLabelText}</label>
+                  <div style={{ width: 36 }}></div>
                 </div>
                 <ul className="filter-list__items">
                   {filters.map((row: InitialValuesItem, index: number) => {
@@ -132,6 +141,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                   <div className="filter-list-button">
                     <button type="submit">{submitFilterButtonText}</button>
                   </div>
+
                 </div>
               </div>
             );

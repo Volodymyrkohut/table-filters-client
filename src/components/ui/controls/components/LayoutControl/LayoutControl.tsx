@@ -12,13 +12,13 @@ interface IProps {
 
 const ControlLayout: React.FC<IProps> = (props) => {
   const { children, label = '', isError, error } = props;
-  const classes = classNames('field-control', { isError });
+  const classes = classNames('filter-field-control', { isError });
 
   return (
     <div className={classes}>
       {label && <label>{label}</label>}
-      <div className="field-control__field">{children}</div>
-      <span className="field-control__error">
+      <div className="filter-field-control__field">{children}</div>
+      <span className="filter-field-control__error">
         {isError && (
           <span>
             <IconImportant />

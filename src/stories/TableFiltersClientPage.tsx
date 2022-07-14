@@ -94,6 +94,12 @@ const FiltersTablePage = () => {
       valuesLabelText="Values"
       addFilterButtonText="+ Add filter"
       submitFilterButtonText="Apply"
+      validationMessages={{
+        required: 'required',
+        date: 'Should be date',
+        string: 'should be string',
+        number: 'should be number',
+      }}
     />
   );
 };

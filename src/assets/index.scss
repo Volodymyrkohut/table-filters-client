@@ -1,22 +1,19 @@
 :root {
   --error-color: #de350b;
   --focus-color: #4c9aff;
-
   --field-border-error-color: var(--error-color);
-  --field-border-focus-color: #4c9aff;
+  --field-border-focus-color: var(--focus-color);
   --field-border-default-color: #f4f5f7;
-
   --field-background-default: #f4f5f7;
   --field-background-error: white;
   --field-background-focus: white;
-
+  --field-min-height: 40px;
   --field-border-radius: 3px;
-
   --filter-max-with: 1000px;
   --filter-min-with: 500px;
 }
 
-%filter-with{
+%filter-with {
   max-width: var(--filter-max-with);
   min-width: var(--filter-min-with);
 }
@@ -48,8 +45,8 @@
 .filter-list {
   &__items {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0 0 20px;
   }
 
   &__item {
@@ -57,6 +54,7 @@
 }
 
 .filter-list-button {
+  padding-right: 36px;
   button {
     @extend %button;
   }
@@ -99,7 +97,6 @@
     border-color: #f4f5f7;
     width: 100%;
     height: 100%;
-    min-height: 40px;
     padding: 0 8px;
     color: #7a869a;
     font-size: 14px;
@@ -132,6 +129,7 @@
     cursor: pointer;
     border-radius: 50%;
     padding: 1px;
+    transition: 0.3s background-color;
 
     &:hover {
       background: var(--error-color);
@@ -154,6 +152,7 @@
   &__remove {
     display: flex;
     align-items: center;
+    height: var(--field-min-height);
   }
   &__field {
     &__values {
@@ -165,8 +164,8 @@
   }
 }
 
-.field-control {
-  .field-control__field {
+.filter-field-control {
+  .filter-field-control__field {
     // dropdown icon
     .select-values__dropdown-indicator,
     .select-id__dropdown-indicator,
@@ -180,7 +179,7 @@
     select,
     .select-values__control,
     .select-id__control {
-      min-height: 40px;
+      min-height: var(--field-min-height);
       border-radius: var(--field-border-radius);
       border: none;
       outline: none;
@@ -199,7 +198,7 @@
 
   // error field
   &.isError {
-    .field-control__field {
+    .filter-field-control__field {
       select,
       .select-values__control,
       .select-id__control {

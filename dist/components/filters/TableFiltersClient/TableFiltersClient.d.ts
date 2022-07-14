@@ -1,7 +1,7 @@
 import * as React from 'react';
-import './TableFiltersClient.scss';
 import { FieldArrayRenderProps } from 'formik';
-import { FilterResponseItem, InitialFiltersWithoutExtraData, LoadOptionsType } from '../../../types/filter';
+import { FilterResponseItem, InitialFiltersWithoutExtraData, LoadOptionsType, ValidationMessage } from '../../../types/filter';
+import '../../../assets/index.scss';
 export interface ITableFiltersClient {
     onLoadSourceOptions: (filterId: string) => LoadOptionsType;
     onSubmitFilterForm: (outputData: InitialFiltersWithoutExtraData) => void;
@@ -14,6 +14,7 @@ export interface ITableFiltersClient {
     idLabelText?: string;
     operatorLabelText?: string;
     valuesLabelText?: string;
+    validationMessages?: ValidationMessage;
 }
 declare const TableFiltersClient: React.FC<ITableFiltersClient>;
 export default TableFiltersClient;
