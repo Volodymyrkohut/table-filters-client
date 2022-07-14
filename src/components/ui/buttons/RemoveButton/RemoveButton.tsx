@@ -8,7 +8,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 const RemoveButton: React.FC<ButtonProps> = ({ className = '', ...rest }) => {
   const classes = classNames('remove-button', classNames);
   return (
-    <button {...rest} className={classes}>
+    <button {...rest} className={classes} type="button">
       <IconRemove />
     </button>
   );
