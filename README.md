@@ -19,9 +19,13 @@ or
  npm install table-filters-client
 ```
 
+Live example here [CodeSandbox](https://codesandbox.io/s/thirsty-smoke-bjc84n?file=/src/App.js)
+
+
 ## Preview
 
 ![My image](src/assets/images/img.png)
+
 
 ## Usage
 
