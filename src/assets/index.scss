@@ -1,4 +1,4 @@
-:root {
+.filter-list {
   // grid, label, etc
   --grid-gap-column: 8px;
   --grid-gap-row: 16px;
@@ -30,7 +30,7 @@
   --field-multiple-value-color: black;
   --field-multiple-value-background: #dfe1e6;
   --field-multiple-value-remove: #172b4d;
-  --field-multiple-value-indicator: #172b4d;
+  --field-dropdown-arrow: #172b4d;
   --field-multiple-value-background-clear: #a4adb9;
   --field-multiple-value-color-clear: white;
 
@@ -43,6 +43,51 @@
   --switcher-background-unchecked: #dfe1e6;
   --switcher-background-checked: #0747a6;
   --switcher-value-color: rgba(9, 30, 66, 0.8956);
+}
+
+.filter-list {
+  --grid-gap-column: 24px;
+  --grid-gap-row: 18px;
+  --grid-label-size: 14px;
+  --grid-label-color: rgba(9, 30, 66, 0.8956);
+
+
+  --error-color: #C42B1C;
+  --focus-color: #005FB8;
+
+  --field-border-error-color: rgba(9, 30, 66, .2);
+  --field-border-focus-color: rgba(9, 30, 66, .2);
+  --field-border-default-color: rgba(9, 30, 66, .2);
+  --field-background-default: white;
+  --field-background-error: white;
+  --field-background-focus: white;
+  --field-min-height: 32px;
+  --field-border-radius: 3px;
+  --field-shadow: none;
+  --field-shadow-focus: inset 0px -2px 0 0 var(--focus-color);
+  --field-shadow-error: inset 0px -2px 0 0 var(--error-color);
+
+
+  // multiple select style
+  --field-multiple-value-size: 12px;
+  --field-multiple-value-color: rgba(9, 30, 66, 0.8956);
+  --field-multiple-value-background: rgba(9, 30, 66, 0.0373);
+  --field-multiple-value-remove: rgba(9, 30, 66, 0.6063);
+
+  --field-multiple-value-background-clear: white;
+  --field-multiple-value-color-clear: black;
+
+
+  // fields (single select, select)
+  --field-value-size: 14px;
+  --field-value-color: rgba(9, 30, 66, 0.8956);
+  --field-dropdown-arrow: rgba(9, 30, 66, 0.6063);
+
+  // switcher style
+  --switcher-background-unchecked: #dfe1e6;
+  --switcher-background-checked: #005FB8;
+  --switcher-value-color: rgba(9, 30, 66, 0.8956);
+
 }
 
 %filter-with {
@@ -88,7 +133,8 @@
 .filter-list-button {
   padding-right: 36px;
 
-  button {
+  .filter-list-button__add,
+  .filter-list-button__save {
     @extend %button;
   }
 }
@@ -152,21 +198,14 @@
   .select-values__multi-value {
     background: var(--field-multiple-value-background);
   }
-
-  .select-values__clear-indicator {
-    background: var(--field-multiple-value-background-clear);
-
-    svg {
-      fill: var(--field-multiple-value-color-clear);
-    }
-  }
-
-
-  .select-values__dropdown-indicator {
-    svg {
-      fill: var(--field-multiple-value-indicator);
-    }
-  }
+  //
+  //
+  //
+  //.select-values__dropdown-indicator {
+  //  svg {
+  //    fill: var(--field-dropdown-arrow);
+  //  }
+  //}
 
   .select-values__multi-value__remove {
     cursor: pointer;
@@ -182,7 +221,7 @@
 
 
   .select-values__clear-indicator {
-    background-color: #a4adb9;
+    background-color: var(--field-multiple-value-background-clear);
     cursor: pointer;
     border-radius: 50%;
     padding: 1px;
@@ -195,7 +234,7 @@
     svg {
       width: 13px;
       height: 13px;
-      fill: white;
+      fill: var(--field-multiple-value-color-clear);
     }
   }
 }
@@ -228,14 +267,22 @@
   }
 }
 
+.select-operator svg{
+  width: 16px;
+  fill:var(--field-dropdown-arrow);
+}
+
 .filter-field-control {
   .filter-field-control__field {
     // dropdown icon
     .select-values__dropdown-indicator,
-    .select-id__dropdown-indicator,
-    .field-select {
+    .select-id__dropdown-indicator{
+      padding: 0 8px 0 8px;
+
+
       svg {
         width: 16px;
+        fill:var(--field-dropdown-arrow);
       }
     }
 
@@ -245,7 +292,6 @@
     .select-id__control {
       min-height: var(--field-min-height);
       border-radius: var(--field-border-radius);
-      //border: none;
       outline: none;
       box-shadow: var(--field-shadow);
       background-color: var(--field-background-default);
@@ -253,7 +299,6 @@
 
       &--is-focused,
       &:focus {
-        //border: none;
         outline: none;
         background-color: var(--field-background-focus);
         border: 1px solid var(--field-border-focus-color);
@@ -284,7 +329,7 @@
       font-weight: 400;
       font-size: 12px;
       line-height: 16px;
-      color: var(--field-border-error-color);
+      color: var(--error-color);
       margin-top: 4px;
     }
 

@@ -194,3 +194,53 @@ export const parseUrl = function <R>(queryParams: string, options?: IParseOption
   return parse(queryParams, options) as unknown as R;
 };
 ```
+
+
+style your forms by using css var
+
+```scss
+.filter-list {
+  --grid-gap-column: 24px;
+  --grid-gap-row: 18px;
+  --grid-label-size: 14px;
+  --grid-label-color: rgba(9, 30, 66, 0.8956);
+
+
+  --error-color: #C42B1C;
+  --focus-color: #005FB8;
+
+  --field-border-error-color: rgba(9, 30, 66, .2);
+  --field-border-focus-color: rgba(9, 30, 66, .2);
+  --field-border-default-color: rgba(9, 30, 66, .2);
+  --field-background-default: white;
+  --field-background-error: white;
+  --field-background-focus: white;
+  --field-min-height: 32px;
+  --field-border-radius: 3px;
+  --field-shadow: none;
+  --field-shadow-focus: inset 0px -2px 0 0 var(--focus-color);
+  --field-shadow-error: inset 0px -2px 0 0 var(--error-color);
+
+
+  // multiple select style
+  --field-multiple-value-size: 12px;
+  --field-multiple-value-color: rgba(9, 30, 66, 0.8956);
+  --field-multiple-value-background: rgba(9, 30, 66, 0.0373);
+  --field-multiple-value-remove: rgba(9, 30, 66, 0.6063);
+
+  --field-multiple-value-background-clear: white;
+  --field-multiple-value-color-clear: black;
+
+
+  // fields (single select, select)
+  --field-value-size: 14px;
+  --field-value-color: rgba(9, 30, 66, 0.8956);
+  --field-dropdown-arrow: rgba(9, 30, 66, 0.6063);
+
+  // switcher style
+  --switcher-background-unchecked: #dfe1e6;
+  --switcher-background-checked: #005FB8;
+  --switcher-value-color: rgba(9, 30, 66, 0.8956);
+
+}
+```

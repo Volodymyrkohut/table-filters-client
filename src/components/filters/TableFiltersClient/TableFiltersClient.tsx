@@ -145,12 +145,12 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                 <div className="button-group">
                   <div className="filter-list-button" onClick={addFilter}>
                     {
-                      AddFilterButton ? <AddFilterButton/> : <button type="button" >{addFilterButtonText}</button>
+                      AddFilterButton ? <AddFilterButton/> : <button type="button" className="filter-list-button__add">{addFilterButtonText}</button>
                     }
                   </div>
 
                   <div className="filter-list-button">
-                    {SaveFilterButton ? <button type="submit"><SaveFilterButton /></button> : <button type="submit">{submitFilterButtonText}</button>}
+                    {SaveFilterButton ? <SaveFilterButton />: <button type="submit" className="filter-list-button__save">{submitFilterButtonText}</button>}
                   </div>
                 </div>
               </div>

@@ -92,9 +92,9 @@ const FiltersTablePage = () => {
       valuesLabelText="Values"
       addFilterButtonText="+ Add filter"
       submitFilterButtonText="Apply"
-      RemoveFilterButton={() => <button>REmove this</button>}
-      AddFilterButton={() => <button type="button">Add Filter</button>}
-      SaveFilterButton={() => <button>Save Filter</button>}
+      // RemoveFilterButton={() => <button type="button">Remove this</button>}
+      // AddFilterButton={() => <button type="button">Add Filter</button>}
+      SaveFilterButton={() => <button type="submit">Save Filter</button>}
       validationMessages={{
         required: 'Required',
         date: 'Should be date',
