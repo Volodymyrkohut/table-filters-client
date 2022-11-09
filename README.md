@@ -112,6 +112,9 @@ const FiltersTable = () => {
       valuesLabelText="Values"
       addFilterButtonText="+ Add filter"
       submitFilterButtonText="Apply"
+      RemoveFilterButton={() => <button>Remove this</button>}
+      AddFilterButton={() => <button type="button">Add Filter</button>}
+      SaveFilterButton={() => <button>Save Filter</button>}
       validationMessages={{
         required: 'required',
         date: 'Should be date',

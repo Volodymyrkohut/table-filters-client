@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC } from "react";
 import { FieldArray, FieldArrayRenderProps, Form, Formik, FormikHelpers } from 'formik';
 import filterSchema from '../../ui/controls/validations';
 import FiltersRow from '../FiltersRow/FiltersRow';
@@ -24,12 +25,15 @@ export interface ITableFiltersClient {
   onAddFilter?: (fieldArrayProps: FieldArrayRenderProps) => void;
   initialFilters: InitialFiltersWithoutExtraData; // InitialValues;
   filtersTypesList: Array<FilterResponseItem>; // Array<FilterTransformedItem>;
-  addFilterButtonText: string;
-  submitFilterButtonText: string;
+  addFilterButtonText?: string;
+  submitFilterButtonText?: string;
   idLabelText?: string;
   operatorLabelText?: string;
   valuesLabelText?: string;
   validationMessages?: ValidationMessage;
+  RemoveFilterButton?: FC;
+  AddFilterButton?: FC;
+  SaveFilterButton?: FC;
 }
 
 const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
@@ -46,6 +50,9 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
     operatorLabelText,
     valuesLabelText,
     validationMessages,
+    RemoveFilterButton,
+    AddFilterButton,
+    SaveFilterButton,
   } = props;
 
   // transform server data
@@ -111,7 +118,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                 <ul className="filter-list__items">
                   {filters.map((row: InitialValuesItem, index: number) => {
                     // clear operator's select and values select
-                    const onChangeIdSelect = () => {
+                    const onChangeField = () => {
                       form.setFieldValue(`filters[${index}].operator`, '');
                       form.setFieldValue(`filters[${index}].values`, null);
                     };
@@ -121,27 +128,30 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                         <FiltersRow
                           loadOptions={onLoadSourceOptions(row?.id?.value)}
                           filterType={row?.id?.type}
-                          onChangeIdSelect={onChangeIdSelect}
-                          idOptions={transformed}
-                          operatorOptions={row?.id?.operators}
-                          valueOptions={row?.id?.values}
+                          onChangeField={onChangeField}
+                          options={{
+                            fields: transformed,
+                            operators: row?.id?.operators,
+                            values: row?.id?.values,
+                          }}
                           onRemove={onRemove}
                           index={index}
+                          RemoveFilterButton={RemoveFilterButton}
                         />
                       </li>
                     );
                   })}
                 </ul>
                 <div className="button-group">
-                  <div className="filter-list-button">
-                    <button type="button" onClick={addFilter}>
-                      {addFilterButtonText}
-                    </button>
-                  </div>
-                  <div className="filter-list-button">
-                    <button type="submit">{submitFilterButtonText}</button>
+                  <div className="filter-list-button" onClick={addFilter}>
+                    {
+                      AddFilterButton ? <AddFilterButton/> : <button type="button" >{addFilterButtonText}</button>
+                    }
                   </div>
 
+                  <div className="filter-list-button">
+                    {SaveFilterButton ? <button type="submit"><SaveFilterButton /></button> : <button type="submit">{submitFilterButtonText}</button>}
+                  </div>
                 </div>
               </div>
             );

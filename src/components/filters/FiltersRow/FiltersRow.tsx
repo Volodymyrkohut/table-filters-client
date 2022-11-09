@@ -4,42 +4,48 @@ import FilterSwitchValueField from '../FilterSwitchValueField/FilterSwitchValueF
 import AppReactSelectControl from '../../ui/controls/AppReactSelectControl';
 import AppSelectControl from '../../ui/controls/AppSelectControl';
 import RemoveButton from '../../ui/buttons/RemoveButton/RemoveButton';
-import AppSwitcher from "../../ui/controls/AppSwitcher";
+import {FC} from "react";
 
 export interface IFiltersRow {
   loadOptions: LoadOptionsType;
-  idOptions: Array<ReactSelectOption>;
-  operatorOptions: OperatorOptions;
-  valueOptions: Array<ReactSelectOption> | null;
+  // idOptions: Array<ReactSelectOption>;
+  // operatorOptions: OperatorOptions;
+  // valueOptions: Array<ReactSelectOption> | null;
   onRemove: (index: number) => void;
-  onChangeIdSelect: (value: any) => void;
+  onChangeField: (value: any) => void;
   index: number;
   filterType: FilterType;
+  options: {
+    fields: Array<ReactSelectOption>;
+    operators: OperatorOptions;
+    values: Array<ReactSelectOption> | null;
+  };
+    RemoveFilterButton?: FC;
 }
 
 const FiltersRow: React.FC<IFiltersRow> = (props) => {
-  const { idOptions, loadOptions, operatorOptions, filterType, valueOptions, onRemove, onChangeIdSelect, index } = props;
+  const { loadOptions, filterType, onRemove, onChangeField, index, options, RemoveFilterButton } = props;
 
   return (
     <div className="filter-row">
       <div className="filter-row__field filter-row__field__id">
-        <AppReactSelectControl classNamePrefix="select-id" name={`filters[${index}].id`} options={idOptions} onChange={onChangeIdSelect} />
+        <AppReactSelectControl classNamePrefix="select-id" name={`filters[${index}].id`} options={options.fields} onChange={onChangeField} />
       </div>
       <div className="filter-row__field filter-row__field__operator">
-        <AppSelectControl className="select-operator" name={`filters[${index}].operator`} options={operatorOptions} />
+        <AppSelectControl className="select-operator" name={`filters[${index}].operator`} options={options.operators} />
       </div>
       <div className="filter-row__field filter-row__field__values">
         <FilterSwitchValueField
           classNamePrefix="select-values"
           name={`filters[${index}].values`}
           type={filterType}
-          valueOptions={valueOptions}
+          valueOptions={options.values}
           loadOptions={loadOptions}
         />
       </div>
 
-      <div className="filter-row__field filter-row__remove">
-        <RemoveButton onClick={() => onRemove(index)} />
+      <div className="filter-row__field filter-row__remove" onClick={() => onRemove(index)}>
+        {RemoveFilterButton ? <RemoveFilterButton /> : <RemoveButton />}
       </div>
     </div>
   );

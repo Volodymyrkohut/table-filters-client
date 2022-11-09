@@ -22,7 +22,8 @@
   --field-min-height: 40px;
   --field-border-radius: 3px;
   --field-shadow: none;
-  --field-shadow-focus: inset 0px -9px 5px -1px rgba(0,0,0,0.75);
+  --field-shadow-focus: none;//inset 0px -3px 2px 0 var(--focus-color);
+  --field-shadow-error: none;//inset 0px -3px 2px 0 var(--error-color);
 
   // multiple select style
   --field-multiple-value-size: 12px;
@@ -244,17 +245,19 @@
     .select-id__control {
       min-height: var(--field-min-height);
       border-radius: var(--field-border-radius);
-      border: none;
+      //border: none;
       outline: none;
-      box-shadow: inset 0px 0px 0px 2px var(--field-border-default-color);
+      box-shadow: var(--field-shadow);
       background-color: var(--field-background-default);
+      border: 1px solid var(--field-border-default-color);
 
       &--is-focused,
       &:focus {
-        border: none;
+        //border: none;
         outline: none;
         background-color: var(--field-background-focus);
-        box-shadow: inset 0 0 0 2px var(--field-border-focus-color);
+        border: 1px solid var(--field-border-focus-color);
+        box-shadow: var(--field-shadow-focus);
       }
     }
 
@@ -267,7 +270,8 @@
       .select-values__control,
       .select-id__control {
         background-color: var(--field-background-error);
-        box-shadow: inset 0 0 0 2px var(--field-border-error-color);
+        box-shadow: var(--field-shadow-error);
+        border: 1px solid var(--field-border-error-color);
       }
     }
   }

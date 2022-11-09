@@ -21,7 +21,7 @@ const ControlLayout: React.FC<IProps> = (props) => {
       <span className="filter-field-control__error">
         {isError && (
           <span>
-            <IconImportant />
+            {/*<IconImportant />*/}
             {error}
           </span>
         )}
