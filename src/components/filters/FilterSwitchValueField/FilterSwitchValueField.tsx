@@ -3,6 +3,7 @@ import { TYPE_BOOLEAN, TYPE_DATE, TYPE_ENUM, TYPE_NUMBER, TYPE_SOURCE, TYPE_STRI
 import AppReactSelectPaginateControl from '../../ui/controls/AppReactSelectPaginateControl';
 import AppReactSelectControl from '../../ui/controls/AppReactSelectControl';
 import { FilterType, LoadOptionsType, ReactSelectOption } from '../../../types/filter';
+import AppSwitcher from '../../ui/controls/AppSwitcher';
 
 export interface FilterSwitchValueFieldProps {
   type: FilterType;
@@ -30,7 +31,9 @@ const FilterSwitchValueField: React.FC<FilterSwitchValueFieldProps> = ({
           placeholder=""
         />
       );
-    case TYPE_STRING || TYPE_BOOLEAN || TYPE_DATE || TYPE_ENUM || TYPE_NUMBER:
+    case TYPE_BOOLEAN:
+      return <AppSwitcher name={name} placeholder="" />;
+    case TYPE_STRING || TYPE_DATE || TYPE_ENUM || TYPE_NUMBER:
       return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} placeholder="" />;
     case TYPE_ENUM:
       return (

@@ -1,6 +1,18 @@
 :root {
+  // grid, label, etc
+  --grid-gap-column: 8px;
+  --grid-gap-row: 16px;
+  --grid-label-size: 12px;
+  --grid-label-color: #6b778c;
+
+  --filter-max-with: 1000px;
+  --filter-min-with: 500px;
+
+  // global
   --error-color: #de350b;
   --focus-color: #4c9aff;
+
+
   --field-border-error-color: var(--error-color);
   --field-border-focus-color: var(--focus-color);
   --field-border-default-color: #f4f5f7;
@@ -9,8 +21,27 @@
   --field-background-focus: white;
   --field-min-height: 40px;
   --field-border-radius: 3px;
-  --filter-max-with: 1000px;
-  --filter-min-with: 500px;
+  --field-shadow: none;
+  --field-shadow-focus: inset 0px -9px 5px -1px rgba(0,0,0,0.75);
+
+  // multiple select style
+  --field-multiple-value-size: 12px;
+  --field-multiple-value-color: black;
+  --field-multiple-value-background: #dfe1e6;
+  --field-multiple-value-remove: #172b4d;
+  --field-multiple-value-indicator: #172b4d;
+  --field-multiple-value-background-clear: #a4adb9;
+  --field-multiple-value-color-clear: white;
+
+
+  // fields (single select, select)
+  --field-value-size: 14px;
+  --field-value-color: black;
+
+  // switcher style
+  --switcher-background-unchecked: #dfe1e6;
+  --switcher-background-checked: #0747a6;
+  --switcher-value-color: rgba(9, 30, 66, 0.8956);
 }
 
 %filter-with {
@@ -55,6 +86,7 @@
 
 .filter-list-button {
   padding-right: 36px;
+
   button {
     @extend %button;
   }
@@ -64,13 +96,13 @@
   @extend %filter-grid;
   @extend %filter-with;
   margin-bottom: 9px;
-  gap: 8px;
+  gap: var(--grid-gap-column);
 
   label {
     font-weight: 600;
-    font-size: 12px;
+    font-size: var(--grid-label-size);
     line-height: 16px;
-    color: #6b778c;
+    color: var(--grid-label-color);
   }
 }
 
@@ -78,11 +110,13 @@
   .select-id__indicator-separator {
     display: none;
   }
+
   .select-id__single-value {
-    color: #7a869a;
-    font-size: 14px;
+    color: var(--field-value-color);
+    font-size: var(--field-value-size);
     font-weight: 400;
   }
+
   .select-id__indicator {
     svg {
       fill: #172b4d;
@@ -98,8 +132,8 @@
     width: 100%;
     height: 100%;
     padding: 0 8px;
-    color: #7a869a;
-    font-size: 14px;
+    color: var(--field-value-color);
+    font-size: var(--field-value-size);
     font-weight: 400;
   }
 }
@@ -110,20 +144,42 @@
   }
 
   .select-values__multi-value__label {
-    color: #172b4d;
+    color: var(--field-multiple-value-color);
+    font-size: var(--field-multiple-value-size);
   }
 
   .select-values__multi-value {
-    background: #dfe1e6;
+    background: var(--field-multiple-value-background);
   }
 
-  .select-values__clear-indicator,
-  .select-values__multi-value__remove,
-  .select-values__dropdown-indicator {
+  .select-values__clear-indicator {
+    background: var(--field-multiple-value-background-clear);
+
     svg {
-      fill: #172b4d;
+      fill: var(--field-multiple-value-color-clear);
     }
   }
+
+
+  .select-values__dropdown-indicator {
+    svg {
+      fill: var(--field-multiple-value-indicator);
+    }
+  }
+
+  .select-values__multi-value__remove {
+    cursor: pointer;
+
+    svg {
+      fill: var(--field-multiple-value-remove);
+    }
+
+    &:hover {
+      background: none;
+    }
+  }
+
+
   .select-values__clear-indicator {
     background-color: #a4adb9;
     cursor: pointer;
@@ -146,19 +202,26 @@
 .filter-row {
   @extend %filter-grid;
   @extend %filter-with;
-  gap: 8px;
-  margin-bottom: 16px;
+  grid-gap: var(--grid-gap-column);
+
+  margin-bottom: var(--grid-gap-row);
 
   &__remove {
     display: flex;
     align-items: center;
     height: var(--field-min-height);
   }
+
   &__field {
+    //display: grid;
+    //align-items: center;
+
     &__values {
     }
+
     &__operator {
     }
+
     &__id {
     }
   }
@@ -194,6 +257,7 @@
         box-shadow: inset 0 0 0 2px var(--field-border-focus-color);
       }
     }
+
   }
 
   // error field
@@ -219,8 +283,84 @@
       color: var(--field-border-error-color);
       margin-top: 4px;
     }
+
     svg {
       margin-right: 3px;
     }
+  }
+}
+
+
+// switcher
+.app-switcher{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 13px;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--switcher-value-color);
+
+  margin-top: calc(var(--field-min-height) / 2 - 10px);
+}
+
+.field-switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 19px;
+
+  .field-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .field-switch__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--switcher-background-unchecked);
+    transition: .4s;
+  }
+
+  input {
+    opacity: 0;
+  }
+
+  .field-switch__slider:before {
+    position: absolute;
+    content: "";
+    width: 12px;
+    height: 12px;
+    //height: 26px;
+    //width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .field-switch__slider {
+    background-color: var(--switcher-background-checked);
+  }
+
+  input:checked + .field-switch__slider:before {
+    transform: translateX(18px);
+  }
+
+  /* Rounded sliders */
+  .field-switch__slider.field-switch__slider--round {
+    border-radius: 34px;
+  }
+
+  .field-switch__slider.field-switch__slider--round:before {
+    border-radius: 50%;
   }
 }

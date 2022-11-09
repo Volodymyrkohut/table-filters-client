@@ -4,6 +4,7 @@ import FilterSwitchValueField from '../FilterSwitchValueField/FilterSwitchValueF
 import AppReactSelectControl from '../../ui/controls/AppReactSelectControl';
 import AppSelectControl from '../../ui/controls/AppSelectControl';
 import RemoveButton from '../../ui/buttons/RemoveButton/RemoveButton';
+import AppSwitcher from "../../ui/controls/AppSwitcher";
 
 export interface IFiltersRow {
   loadOptions: LoadOptionsType;

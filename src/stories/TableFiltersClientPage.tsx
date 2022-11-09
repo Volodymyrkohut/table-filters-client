@@ -30,12 +30,10 @@ interface RequestOptions {
 const requestOptions: RequestOptions = {
   headers: {
     Authorization:
-      'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLm5pdGVzLmNsb3VkXC9leHRyYW5ldFwvYXV0aFwvbG9naW4iLCJpYXQiOjE2NTgxMzQ2NjIsImV4cCI6MTY4OTY3MDY2MiwibmJmIjoxNjU4MTM0NjYyLCJqdGkiOiJlSkE2MjR4c0Rsd1l4VVpCIiwic3ViIjoxLCJwcnYiOiI2NDNkOGEwNGY0ZDI2ZjUyNTlmMDI4MjkzNjM4NDk1NzEyNzA0OThmIn0.AYkELi0Suw2nAnyq6VqAnrT6cxa_rKb-jOl91rB66Zs',
+      'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmRldi5icm9udWkuY29tXC9hZG1pblwvYXV0aFwvbG9naW4iLCJpYXQiOjE2Njc5MjUyMDIsImV4cCI6MTY5OTQ2MTIwMiwibmJmIjoxNjY3OTI1MjAyLCJqdGkiOiJlSzhNMm1LSjk0MWxhYlp3Iiwic3ViIjoxLCJwcnYiOiJhMjNiNTczZGM3M2E0MDdlOGRlNTNiNDg2ZjM2ODg2YWRmNzBjNDgzIn0.5a4jd1AMWBC-eQMLGSfVT_cXB4sJpHz0CCIofPzdjxg',
   },
 };
-const queryString =
-  '?filters%5B0%5D%5Bvalues%5D%5B0%5D%5Blabel%5D=2&filters%5B0%5D%5Bvalues%5D%5B0%5D%5Bvalue%5D=2&filters%5B0%5D%5Bvalues%5D%5B0%5D%5B__isNew__%5D=true&filters%5B0%5D%5Boperator%5D=<%3D&filters%5B0%5D%5Bid%5D%5Blabel%5D=ID&filters%5B0%5D%5Bid%5D%5Bvalue%5D=1&filters%5B1%5D%5Boperator%5D=<%3D&filters%5B1%5D%5Bvalues%5D%5B0%5D%5Blabel%5D=300&filters%5B1%5D%5Bvalues%5D%5B0%5D%5Bvalue%5D=300&filters%5B1%5D%5Bvalues%5D%5B0%5D%5B__isNew__%5D=true&filters%5B1%5D%5Bid%5D%5Blabel%5D=Сума&filters%5B1%5D%5Bid%5D%5Bvalue%5D=3&filters%5B2%5D%5Boperator%5D=%3D&filters%5B2%5D%5Bvalues%5D%5B0%5D%5Blabel%5D=Підтверджено&filters%5B2%5D%5Bvalues%5D%5B0%5D%5Bvalue%5D=1&filters%5B2%5D%5Bid%5D%5Blabel%5D=Статус&filters%5B2%5D%5Bid%5D%5Bvalue%5D=13';
-
+const queryString = '?filters%5B0%5D%5Bvalues%5D%5B0%5D%5Bvalue%5D=1&filters%5B0%5D%5Bvalues%5D%5B0%5D%5Blabel%5D=Koch-Bradtke%20Hotel-84542&filters%5B0%5D%5Boperator%5D=%3D&filters%5B0%5D%5Bid%5D%5Blabel%5D=Готель&filters%5B0%5D%5Bid%5D%5Bvalue%5D=13&filters%5B1%5D%5Bvalues%5D%5B0%5D%5Bvalue%5D=5&filters%5B1%5D%5Bvalues%5D%5B0%5D%5Blabel%5D=comp%205&filters%5B1%5D%5Boperator%5D=%21%3D&filters%5B1%5D%5Bid%5D%5Blabel%5D=Компанія&filters%5B1%5D%5Bid%5D%5Bvalue%5D=14'
 const FiltersTablePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +42,7 @@ const FiltersTablePage = () => {
   const onLoadSourceOptions = (filterId: string): LoadOptionsType => {
     return async (inputValue, prevOptions, additional = { page: 1 }) => {
       const response = await fetch(
-        `https://api.nites.cloud/extranet/hotels/leuschke-plc-hotel-42507/filters/${filterId}/source-data?query=${inputValue}&page=${additional.page}`,
+        `https://api.dev.bronui.com/admin/filters/${filterId}/source-data?query=${inputValue}&page=${additional.page}`,
         requestOptions
       );
 
@@ -62,7 +60,7 @@ const FiltersTablePage = () => {
   };
 
   useEffect(() => {
-    fetch('https://api.nites.cloud/extranet/hotels/leuschke-plc-hotel-42507/reservations', requestOptions)
+    fetch('https://api.dev.bronui.com/admin/hotels', requestOptions)
       .then((response) => response.json())
       .then((data: Response) => {
         setFilters(data.meta.filters);
