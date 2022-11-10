@@ -72,6 +72,7 @@ const FiltersTablePage = () => {
 
   // save filters to url
   const submitForm = (data: InitialFiltersWithoutExtraData) => {
+    console.log("data,,,,,,,,,,,,,,,",data)
     navigate(`?${stringifyUrl(data)}`);
   };
 
@@ -92,8 +93,8 @@ const FiltersTablePage = () => {
       valuesLabelText="Values"
       addFilterButtonText="+ Add filter"
       submitFilterButtonText="Apply"
-      // RemoveFilterButton={() => <button type="button">Remove this</button>}
-      // AddFilterButton={() => <button type="button">Add Filter</button>}
+      RemoveFilterButton={() => <button type="button">Remove this</button>}
+      AddFilterButton={() => <button type="button">Add Filter</button>}
       SaveFilterButton={() => <button type="submit">Save Filter</button>}
       validationMessages={{
         required: 'Required',

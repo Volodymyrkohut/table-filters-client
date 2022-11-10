@@ -1,6 +1,6 @@
 {
   "name": "table-filters-client",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "",
   "repository": "https://github.com/Volodymyrkohut/table-filters-client",
   "prepablish": "yarn run build && yarn run test",
