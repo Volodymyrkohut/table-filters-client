@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TableFiltersClient } from '../components';
-import { InitialFilterValues, FilterResponseItem, LoadOptionsType } from '../types/filter';
+import { InitialFilterValues, FilterResponseItem } from '../types/filter';
 import { stringifyUrl, parseUrl } from './helpers';
 
 interface Response {
@@ -39,7 +39,7 @@ const FiltersTablePage = () => {
   const location = useLocation();
   const [filters, setFilters] = useState<Array<FilterResponseItem>>([]);
 
-  const onLoadSourceOptions = (filterId: string): LoadOptionsType => {
+  const onLoadSourceOptions = (filterId: string): any => {
     return async (inputValue, prevOptions, additional = { page: 1 }) => {
       const response = await fetch(
         `https://api.dev.bronui.com/admin/filters/${filterId}/source-data?query=${inputValue}&page=${additional.page}`,
@@ -68,10 +68,9 @@ const FiltersTablePage = () => {
 
   // receive filters from url
   const initialFilters = parseUrl<InitialFilterValues>(queryString.slice(1));
-  console.log(initialFilters);
+
   // save filters to url
   const submitForm = (data: InitialFilterValues) => {
-    console.log("data,,,,,,,,,,,,,,,",`?${stringifyUrl(data)}`)
     navigate(`?${stringifyUrl(data)}`);
   };
 
@@ -92,7 +91,7 @@ const FiltersTablePage = () => {
       valuesLabelText="Values"
       addFilterButtonText="+ Add filter"
       submitFilterButtonText="Apply"
-      RemoveFilterButton={() => <button type="button">Remove this</button>}
+      // RemoveFilterButton={() => <button type="button">Remove this</button>}
       AddFilterButton={() => <button type="button">Add Filter</button>}
       SaveFilterButton={() => <button type="submit">Save Filter</button>}
       validationMessages={{

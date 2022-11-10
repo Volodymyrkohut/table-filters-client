@@ -13,10 +13,12 @@
   --focus-color: #4c9aff;
 
 
-  --field-border-error-color: var(--error-color);
-  --field-border-focus-color: var(--focus-color);
-  --field-border-default-color: #f4f5f7;
+  --field-border-error: 2px solid var(--error-color);
+  --field-border-focus: 2px solid var(--focus-color);
+  --field-border-default: 2px solid #f4f5f7;
+
   --field-background-default: #f4f5f7;
+
   --field-background-error: white;
   --field-background-focus: white;
   --field-min-height: 40px;
@@ -127,19 +129,19 @@
   }
 }
 
-.field-select {
-  select {
-    appearance: none;
-    background: #f4f5f7;
-    border-color: #f4f5f7;
-    width: 100%;
-    height: 100%;
-    padding: 0 8px;
-    color: var(--field-value-color);
-    font-size: var(--field-value-size);
-    font-weight: 400;
-  }
-}
+//.field-select {
+//  select {
+//    appearance: none;
+//    background: #f4f5f7;
+//    border-color: #f4f5f7;
+//    width: 100%;
+//    height: 100%;
+//    padding: 0 8px;
+//    color: var(--field-value-color);
+//    font-size: var(--field-value-size);
+//    font-weight: 400;
+//  }
+//}
 
 .select-values__control {
   .select-values__indicator-separator {
@@ -205,7 +207,8 @@
   &__remove {
     display: flex;
     align-items: center;
-    height: var(--field-min-height);
+    height: 100%;
+    //height: var(--field-min-height);
   }
 
   &__field {
@@ -243,7 +246,7 @@
     }
 
     // field default state
-    select,
+    //select,
     .select-values__control,
     .select-id__control {
       min-height: var(--field-min-height);
@@ -251,13 +254,13 @@
       outline: none;
       box-shadow: var(--field-shadow);
       background-color: var(--field-background-default);
-      border: 1px solid var(--field-border-default-color);
+      border: var(--field-border-default);
 
       &--is-focused,
       &:focus {
         outline: none;
         background-color: var(--field-background-focus);
-        border: 1px solid var(--field-border-focus-color);
+        border: var(--field-border-focus);
         box-shadow: var(--field-shadow-focus);
       }
     }
@@ -267,12 +270,12 @@
   // error field
   &.isError {
     .filter-field-control__field {
-      select,
+      //select,
       .select-values__control,
       .select-id__control {
         background-color: var(--field-background-error);
         box-shadow: var(--field-shadow-error);
-        border: 1px solid var(--field-border-error-color);
+        border: var(--field-border-error);
       }
     }
   }
