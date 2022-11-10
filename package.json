@@ -76,10 +76,11 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "yup": "0.28.5",
-    "react-select": "^5.4.0",
     "formik": "^2.2.9",
-    "react-select-async-paginate": "^0.6.1"
+    "query-string": "^7.1.1",
+    "react-select": "^5.4.0",
+    "react-select-async-paginate": "^0.6.1",
+    "yup": "0.28.5"
   },
   "peerDependencies": {
     "react": "*"

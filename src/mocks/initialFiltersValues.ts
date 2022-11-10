@@ -1,6 +1,6 @@
-import { InitialFiltersWithoutExtraData } from '../types/filter';
+import { InitialFilterValues } from '../types/filter';
 
-const initialFilterValues: InitialFiltersWithoutExtraData = {
+const initialFilterValues: InitialFilterValues = {
   filters: [
     {
       values: [

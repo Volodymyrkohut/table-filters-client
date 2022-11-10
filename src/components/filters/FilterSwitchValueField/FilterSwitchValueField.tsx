@@ -8,7 +8,7 @@ import AppSwitcher from '../../ui/controls/AppSwitcher';
 export interface FilterSwitchValueFieldProps {
   type: FilterType;
   name: string;
-  valueOptions: Array<ReactSelectOption> | null;
+  valueOptions: Array<ReactSelectOption> | null | boolean;
   loadOptions: LoadOptionsType;
   classNamePrefix?: string;
 }
@@ -19,6 +19,7 @@ const FilterSwitchValueField: React.FC<FilterSwitchValueFieldProps> = ({
   valueOptions,
   loadOptions,
   classNamePrefix,
+  ...rest
 }) => {
   switch (type) {
     case TYPE_SOURCE:
@@ -29,18 +30,26 @@ const FilterSwitchValueField: React.FC<FilterSwitchValueFieldProps> = ({
           loadOptions={loadOptions}
           classNamePrefix={classNamePrefix}
           placeholder=""
+          {...rest}
         />
       );
     case TYPE_BOOLEAN:
       return <AppSwitcher name={name} placeholder="" />;
     case TYPE_STRING || TYPE_DATE || TYPE_ENUM || TYPE_NUMBER:
-      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} placeholder="" />;
+      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} placeholder="" {...rest} />;
     case TYPE_ENUM:
       return (
-        <AppReactSelectControl name={name} options={valueOptions} isMulti classNamePrefix={classNamePrefix} placeholder="" />
+        <AppReactSelectControl
+          name={name}
+          options={valueOptions}
+          isMulti
+          classNamePrefix={classNamePrefix}
+          placeholder=""
+          {...rest}
+        />
       );
     default:
-      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} placeholder="" />;
+      return <AppReactSelectControl name={name} isMulti classNamePrefix={classNamePrefix} placeholder="" {...rest} />;
   }
 };
 

@@ -14,7 +14,7 @@ const AppSwitcher: FC<Props> = (props) => {
   return (
     <Field name={name}>
       {(propsField: FieldProps) => {
-        const { field, meta } = propsField;
+        const { field, form, meta } = propsField;
         const isError: boolean = meta.touched && !!meta.error;
 
         return (

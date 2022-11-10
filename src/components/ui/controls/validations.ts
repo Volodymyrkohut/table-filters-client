@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
-import { FilterTransformedItem, ReactSelectOption } from '../../../types/filter';
+import { ReactSelectOption } from '../../../types/filter';
 
 const arrayOfObjectsToArrayOfStrings = (value: Array<ReactSelectOption>) => {
-  return value?.map((item) => item.value);
+  return value?.map((item) => item.id);
 };
 
 const defaultValidationMessages = {
@@ -17,14 +17,7 @@ export default function filterSchemaHOF(validationMessage = defaultValidationMes
     return Yup.object().shape({
     filters: Yup.array().of(
       Yup.object().shape({
-        id: Yup.object()
-          .shape({
-            label: Yup.string().required(),
-            value: Yup.string().required(),
-            type: Yup.string().required(),
-          })
-          .nullable()
-          .required(validationMessage.required),
+        id: Yup.object().nullable().required(validationMessage.required),
         // @ts-ignore
         values: Yup.lazy((values: any, params: any) => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

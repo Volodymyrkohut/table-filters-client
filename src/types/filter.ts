@@ -10,8 +10,8 @@ export type FilterType =
   | typeof TYPE_SOURCE;
 
 export type Operators = '<' | '<=' | '>' | '>=' | '=' | '!=' | string;
-export type ReactSelectOption = { value: string; label: string };
-export type OperatorOptions = Array<{ key: Operators; value: Operators }>;
+export type ReactSelectOption = { id: string; name: string };
+export type OperatorOptions = Array<{ value: Operators; label: Operators }>;
 
 export interface Additional {
   page: number;
@@ -25,34 +25,25 @@ export interface FilterResponseItem {
   type: FilterType;
 }
 
-// transformed for usage with select2
-export interface FilterTransformedItem {
-  value: string;
-  label: string;
-  values: null | Array<ReactSelectOption>;
-  operators: OperatorOptions;
-  type: FilterType;
-}
-
 // from store as search params or localstorage
-export interface InitialFiltersWithoutExtraData {
+export interface InitialFilterValues {
   filters: Array<{
-    id: ReactSelectOption;
-    values: Array<ReactSelectOption>;
+    id: { id: string; caption: string };
+    values: Array<ReactSelectOption> | boolean | null;
     operator: Operators;
   }>;
 }
 
 // with extra info
-export interface InitialValuesItem {
-  id: FilterTransformedItem;
-  values: Array<ReactSelectOption>;
+export interface InitialFilterValuePopulated {
+  id: FilterResponseItem;
+  values: Array<ReactSelectOption> | boolean | null;
   operator: Operators;
 }
 
 // for formik functionality
 export interface InitialValues {
-  filters: Array<InitialValuesItem>;
+  filters: Array<InitialFilterValuePopulated>;
 }
 
 // react-select paginate types
