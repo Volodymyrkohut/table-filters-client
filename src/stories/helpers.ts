@@ -15,6 +15,7 @@ export const parseUrl = function <R>(queryParams: string, options?: IParseOption
       }
 
       if (str in keywords) {
+        // @ts-ignore
         return keywords[str]
       }
 

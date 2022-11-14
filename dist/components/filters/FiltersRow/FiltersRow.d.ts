@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { FilterType, LoadOptionsType, OperatorOptions, ReactSelectOption } from '../../../types/filter';
-import { FC } from "react";
+import { FilterResponseItem, FilterType, LoadOptionsType } from '../../../types/filter';
 export interface IFiltersRow {
     loadOptions: LoadOptionsType;
     onRemove: (index: number) => void;
@@ -8,11 +7,11 @@ export interface IFiltersRow {
     index: number;
     filterType: FilterType;
     options: {
-        fields: Array<ReactSelectOption>;
-        operators: OperatorOptions;
-        values: Array<ReactSelectOption> | null;
+        fields: Array<FilterResponseItem>;
+        operators: Array<string>;
+        values: any;
     };
-    RemoveFilterButton?: FC;
+    RemoveFilterButton?: React.FC;
 }
 declare const FiltersRow: React.FC<IFiltersRow>;
 export default FiltersRow;

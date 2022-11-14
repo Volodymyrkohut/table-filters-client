@@ -13,7 +13,7 @@ export interface IFiltersRow {
   options: {
     fields: Array<FilterResponseItem>;
     operators: Array<string>;
-    values: Array<ReactSelectOption> | boolean | null;
+    values: any;
   };
   RemoveFilterButton?: React.FC;
 }
@@ -34,7 +34,9 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
           classNamePrefix="select-id"
           name={`filters[${index}].id`}
           options={options.fields}
+          // @ts-ignore
           getOptionLabel={(option: FilterResponseItem) => option.caption}
+          // @ts-ignore
           getOptionValue={(option: FilterResponseItem) => String(option.id)}
           onChange={onChangeField}
         />
@@ -43,6 +45,7 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
         <AppReactSelectControl
           classNamePrefix="select-id"
           name={`filters[${index}].operator`}
+          // @ts-ignore
           options={operatorTransform(options?.operators)}
           onChange={onChangeField}
         />
@@ -51,6 +54,7 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
         <FilterSwitchValueField
           classNamePrefix="select-values"
           name={`filters[${index}].values`}
+          // @ts-ignore
           getOptionLabel={(option: ReactSelectOption) => option.name}
           getOptionValue={(option: ReactSelectOption) => String(option.id)}
           type={filterType}

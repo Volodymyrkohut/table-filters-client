@@ -40,7 +40,7 @@ const FiltersTablePage = () => {
   const [filters, setFilters] = useState<Array<FilterResponseItem>>([]);
 
   const onLoadSourceOptions = (filterId: string): any => {
-    return async (inputValue, prevOptions, additional = { page: 1 }) => {
+    return async (inputValue: any, prevOptions: any, additional = { page: 1 }) => {
       const response = await fetch(
         `https://api.dev.bronui.com/admin/filters/${filterId}/source-data?query=${inputValue}&page=${additional.page}`,
         requestOptions
@@ -59,6 +59,7 @@ const FiltersTablePage = () => {
   };
 
   useEffect(() => {
+    // @ts
     fetch('https://api.dev.bronui.com/admin/hotels', requestOptions)
       .then((response) => response.json())
       .then((data: Response) => {
@@ -82,6 +83,7 @@ const FiltersTablePage = () => {
       onRemoveFilter={() => {
         /* do something after some filter has been deleted */
       }}
+      // @ts-ignore
       onLoadSourceOptions={onLoadSourceOptions}
       onSubmitFilterForm={submitForm} /*  after submit */
       initialFilters={initialFilters} /* from url or localstorage */

@@ -3,7 +3,7 @@ import { FilterType, LoadOptionsType, ReactSelectOption } from '../../../types/f
 export interface FilterSwitchValueFieldProps {
     type: FilterType;
     name: string;
-    valueOptions: Array<ReactSelectOption> | null;
+    valueOptions: Array<ReactSelectOption> | null | boolean;
     loadOptions: LoadOptionsType;
     classNamePrefix?: string;
 }

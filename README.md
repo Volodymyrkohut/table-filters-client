@@ -146,7 +146,7 @@ If `type === 'source'` then when click to 'values' select it would call `onLoadS
   filters: [
     {
       id: {
-        caption: 'Status',
+        caption: 'Hotel',
         id: '1',
       },
       operator: {
