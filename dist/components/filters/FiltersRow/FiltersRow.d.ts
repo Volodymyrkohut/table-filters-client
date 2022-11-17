@@ -12,6 +12,7 @@ export interface IFiltersRow {
         values: any;
     };
     RemoveFilterButton?: React.FC;
+    fieldId: any;
 }
 declare const FiltersRow: React.FC<IFiltersRow>;
 export default FiltersRow;
