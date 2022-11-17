@@ -58,7 +58,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
   const submitForm = (values: InitialValues, helpers: FormikHelpers<InitialValues>) => {
     // extract useless data
     const outputData = transformWithoutUselessData(values);
-    console.log(outputData);
+
     if (onSubmitFilterForm) {
       onSubmitFilterForm(outputData);
     }
@@ -113,7 +113,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                   {filters.map((row: InitialFilterValuePopulated, index: number) => {
                     // clear operator's select and values select
                     const onChangeField = () => {
-                      form.setFieldValue(`filters[${index}].operator`, '');
+                      form.setFieldValue(`filters[${index}].operator`, null);
                       form.setFieldValue(`filters[${index}].values`, null);
                     };
                     // console.log("row?.id?.operators",row)
@@ -121,6 +121,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                       <li className="filter-list__item" key={index}>
                         <FiltersRow
                           loadOptions={onLoadSourceOptions(row?.id?.id)}
+                          fieldId={row?.id?.id}
                           filterType={row?.id?.type}
                           onChangeField={onChangeField}
                           options={{

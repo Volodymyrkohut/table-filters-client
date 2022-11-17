@@ -16,10 +16,11 @@ export interface IFiltersRow {
     values: any;
   };
   RemoveFilterButton?: React.FC;
+  fieldId: any;
 }
 
 const FiltersRow: React.FC<IFiltersRow> = (props) => {
-  const { loadOptions, filterType, onRemove, onChangeField, index, options, RemoveFilterButton } = props;
+  const { loadOptions, filterType, onRemove, onChangeField, index, options, RemoveFilterButton, fieldId } = props;
 
   function operatorTransform(o = []) {
     const items = o.map((item) => ({ label: item, value: item }));
@@ -60,6 +61,7 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
           type={filterType}
           valueOptions={options.values}
           loadOptions={loadOptions}
+          key={fieldId}
         />
       </div>
 

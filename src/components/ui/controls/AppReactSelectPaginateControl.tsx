@@ -12,7 +12,7 @@ export interface IAppReactSelectPaginateControl extends AsyncPaginateType {
 }
 
 const AppReactSelectPaginateControl: React.FC<IAppReactSelectPaginateControl> = (props) => {
-  const { name, label, onChange, ...rest } = props;
+  const { name, label, onChange, onBlur, ...rest } = props;
 
   return (
     <Field name={name}>
@@ -25,7 +25,10 @@ const AppReactSelectPaginateControl: React.FC<IAppReactSelectPaginateControl> = 
             <FieldReactSelectPaginate
               {...rest}
               {...field}
-              onBlur={() => form.setFieldTouched(name, true)}
+              onBlur={(value) => {
+                if (onBlur) onBlur(value);
+                form.setFieldTouched(name, true);
+              }}
               onChange={(value: any) => {
                 if (onChange) onChange(value);
                 form.setFieldValue(name, value);
