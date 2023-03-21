@@ -56,8 +56,17 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
           classNamePrefix="select-values"
           name={`filters[${index}].values`}
           // @ts-ignore
-          getOptionLabel={(option: ReactSelectOption) => option.name}
-          getOptionValue={(option: ReactSelectOption) => String(option.id)}
+          getOptionLabel={(option: ReactSelectOption) => { return option.name}}
+          getOptionValue={(option: ReactSelectOption) => { return  String(option.id)}}
+          // @ts-ignore
+          getNewOptionData={(inputValue: string, optionLabel: string) => {
+
+            return {
+              id: optionLabel,
+              name: inputValue,
+              __isNew__: true,
+            };
+          }}
           type={filterType}
           valueOptions={options.values}
           loadOptions={loadOptions}

@@ -60,7 +60,7 @@ const FiltersTablePage = () => {
 
   useEffect(() => {
     // @ts
-    fetch('https://api.dev.bronui.com/admin/hotels', requestOptions)
+    fetch('https://api.bronui.com/admin/address-names', requestOptions)
       .then((response) => response.json())
       .then((data: Response) => {
         setFilters(data.meta.filters);
@@ -72,6 +72,7 @@ const FiltersTablePage = () => {
 
   // save filters to url
   const submitForm = (data: InitialFilterValues) => {
+    console.log(data);
     navigate(`?${stringifyUrl(data)}`);
   };
 
