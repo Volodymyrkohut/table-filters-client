@@ -39,7 +39,7 @@ export default function filterSchemaHOF(validationMessage = defaultValidationMes
           } else {
             return Yup.array()
               .transform((value: Array<ReactSelectOption>) => arrayOfObjectsToArrayOfStrings(value))
-              .of(Yup.number().typeError(validationMessage.string))
+              .of(Yup.string().typeError(validationMessage.string))
               .required(validationMessage.required);
           }
         }),
