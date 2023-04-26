@@ -11,6 +11,24 @@ export interface IAppReactSelectControl extends Props {
   label?: string;
 }
 
+// eslint-disable-next-line consistent-return
+const errorFormat = (errors: string | Array<{ id: string; name: string }> | undefined) => {
+  if (typeof errors === 'string') {
+    return errors;
+  }
+  if (Array.isArray(errors)) {
+    const showError = errors.filter((error) => {
+      return error && error.id;
+    });
+
+    if (showError[0] && showError[0].id) {
+      return showError[0].id;
+    }
+  } else {
+    return '';
+  }
+};
+
 const AppReactSelectControl: React.FC<IAppReactSelectControl> = (props) => {
   const { name, label, onChange, ...rest } = props;
 
@@ -19,9 +37,9 @@ const AppReactSelectControl: React.FC<IAppReactSelectControl> = (props) => {
       {(propsField: FieldProps) => {
         const { field, meta, form } = propsField;
         const isError = meta.touched && !!meta.error;
-
+        console.log(meta.error);
         return (
-          <ControlLayout isError={isError} error={meta.error} label={label}>
+          <ControlLayout isError={isError} error={errorFormat(meta.error)} label={label}>
             <FieldReactSelect
               {...rest}
               {...field}

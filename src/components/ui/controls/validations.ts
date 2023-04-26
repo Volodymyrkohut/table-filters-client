@@ -1,19 +1,18 @@
 import * as Yup from 'yup';
 
 const defaultValidationMessages = {
-  required: 'Required',
-  date: 'Should be valid date format',
-  string: 'Should be valid string',
-  number: 'Should be valid number',
+  required: 'This field is required ',
+  date: 'Should be valid date format ',
+  string: 'Should be valid string ',
+  number: 'Should be valid number ',
 };
 
 export default function filterSchemaHOF(validationMessage = defaultValidationMessages) {
-  const date = Yup.string();
-    // .matches(/(0?[1-9]|[12][0-9]|3[01])[- /.](0?[1-9]|1[012])[- /.](19|20)\d\d/, {
-    // message: validationMessage.date,
-  // });
+  const date = Yup.string().matches(/(0?[1-9]|[12][0-9]|3[01])[- /.](0?[1-9]|1[012])[- /.](19|20)\d\d/, {
+    message: validationMessage.date,
+  });
 
-  const yupNumber = Yup.string(); //.matches(/^[0-9]/, { message: validationMessage.number });
+  const yupNumber = Yup.string().matches(/^[0-9]/, { message: validationMessage.number, excludeEmptyString: true });
 
   return Yup.object().shape({
     filters: Yup.array().of(
@@ -25,14 +24,15 @@ export default function filterSchemaHOF(validationMessage = defaultValidationMes
 
           if (type === 'number') {
             return Yup.array()
+              .nullable()
               .of(
-                Yup.object()
-                  .shape({
-                    id: yupNumber,
-                    name: yupNumber,
-                  })
-                  .nullable()
+                Yup.object().shape({
+                  id: yupNumber,
+                  name: yupNumber,
+                })
               )
+              .min(1, validationMessage.required)
+              .nullable()
               .required(validationMessage.required);
           }
           if (type === 'date') {
@@ -43,6 +43,7 @@ export default function filterSchemaHOF(validationMessage = defaultValidationMes
                   name: date,
                 })
               )
+              .min(1, validationMessage.required)
               .nullable()
               .required(validationMessage.required);
           }
@@ -56,6 +57,7 @@ export default function filterSchemaHOF(validationMessage = defaultValidationMes
                 name: Yup.string().typeError(validationMessage.string),
               })
             )
+            .min(1, validationMessage.required)
             .nullable()
             .required(validationMessage.required);
         }),

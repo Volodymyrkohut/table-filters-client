@@ -26,6 +26,9 @@ Live example here [CodeSandbox](https://codesandbox.io/s/thirsty-smoke-bjc84n?fi
 
 ![My image](src/assets/images/img.png)
 
+##### changed with css variables
+![My image](src/assets/images/img_2.png)
+
 
 ## Usage
 
@@ -121,7 +124,7 @@ data.meta.filters in useEffect will return data as below and exactly data expect
     id: 1,
     operators: ['<', '<=', '>', '>=', '=', '!='],
     type: 'number', // number, string, source, date, enum, boolean
-    values: null, // null or [{ id: '', name: '' }]
+    values: null, // null or {data: [{ id: '', name: '' }]}
   },
 ];
 ```
@@ -129,10 +132,15 @@ data.meta.filters in useEffect will return data as below and exactly data expect
 If `type === 'enum'` then values will be an array of objects as below
 
 ```javascript
-[
-  { id: '1', name: 'Approved' },
-  { id: '2', name: 'Reject' },
-];
+{
+  values: {
+    data: [
+      {id: '1', name: 'Approved'},
+      {id: '2', name: 'Reject'},
+    ]
+  }
+}
+};
 ```
 
 If `type === 'string' && type === 'number' && type === 'date'` then values will be `null` and we will be able to fill in the field ourselves
@@ -150,8 +158,8 @@ If `type === 'source'` then when click to 'values' select it would call `onLoadS
         id: '1',
       },
       operator: {
-        label: "=",
-        value: "=",
+        name: "=",
+        id: "=",
       },
       values: [
         {
