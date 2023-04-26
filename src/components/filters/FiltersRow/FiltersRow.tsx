@@ -23,7 +23,7 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
   const { loadOptions, filterType, onRemove, onChangeField, index, options, RemoveFilterButton, fieldId } = props;
 
   function operatorTransform(o = []) {
-    const items = o.map((item) => ({ label: item, value: item }));
+    const items = o.map((item) => ({ name: item, id: item }));
 
     return items;
   }
@@ -35,9 +35,7 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
           classNamePrefix="select-id"
           name={`filters[${index}].id`}
           options={options.fields}
-          // @ts-ignore
           getOptionLabel={(option: FilterResponseItem) => option.caption}
-          // @ts-ignore
           getOptionValue={(option: FilterResponseItem) => String(option.id)}
           onChange={onChangeField}
         />
@@ -46,7 +44,8 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
         <AppReactSelectControl
           classNamePrefix="select-id"
           name={`filters[${index}].operator`}
-          // @ts-ignore
+          getOptionLabel={(option: ReactSelectOption) => option.name}
+          getOptionValue={(option: ReactSelectOption) => String(option.id)}
           options={operatorTransform(options?.operators)}
           onChange={onChangeField}
         />
@@ -55,12 +54,9 @@ const FiltersRow: React.FC<IFiltersRow> = (props) => {
         <FilterSwitchValueField
           classNamePrefix="select-values"
           name={`filters[${index}].values`}
-          // @ts-ignore
-          getOptionLabel={(option: ReactSelectOption) => { return option.name}}
-          getOptionValue={(option: ReactSelectOption) => { return  String(option.id)}}
-          // @ts-ignore
+          getOptionLabel={(option: ReactSelectOption) => option.name}
+          getOptionValue={(option: ReactSelectOption) => String(option.id)}
           getNewOptionData={(inputValue: string, optionLabel: string) => {
-
             return {
               id: optionLabel,
               name: inputValue,

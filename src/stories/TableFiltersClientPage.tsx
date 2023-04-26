@@ -29,11 +29,11 @@ interface RequestOptions {
 const requestOptions: RequestOptions = {
   headers: {
     Authorization:
-      'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmRldi5icm9udWkuY29tXC9hZG1pblwvYXV0aFwvbG9naW4iLCJpYXQiOjE2Njc5MjUyMDIsImV4cCI6MTY5OTQ2MTIwMiwibmJmIjoxNjY3OTI1MjAyLCJqdGkiOiJlSzhNMm1LSjk0MWxhYlp3Iiwic3ViIjoxLCJwcnYiOiJhMjNiNTczZGM3M2E0MDdlOGRlNTNiNDg2ZjM2ODg2YWRmNzBjNDgzIn0.5a4jd1AMWBC-eQMLGSfVT_cXB4sJpHz0CCIofPzdjxg',
+      'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmRldi5icm9udWkuY29tXC9leHRyYW5ldFwvYXV0aFwvbG9naW4iLCJpYXQiOjE2ODE4MjYzNzMsImV4cCI6MTcxMzM2MjM3MywibmJmIjoxNjgxODI2MzczLCJqdGkiOiJmeEJqQWN0Zk9FdWxSRTBHIiwic3ViIjoxLCJwcnYiOiI2NDNkOGEwNGY0ZDI2ZjUyNTlmMDI4MjkzNjM4NDk1NzEyNzA0OThmIn0.KHLcYucKvtqwBBhgcDf_jpyhP-3oRD9A5tpH5Qm3DgE',
   },
 };
 // const queryString = '?filters%5B0%5D%5Bvalues%5D=true&filters%5B0%5D%5Boperator%5D%5Blabel%5D=%21%3D&filters%5B0%5D%5Boperator%5D%5Bvalue%5D=%21%3D&filters%5B0%5D%5Bid%5D%5Bcaption%5D=%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%B8%D0%B9&filters%5B0%5D%5Bid%5D%5Bid%5D=15&filters%5B1%5D%5Bvalues%5D=false&filters%5B1%5D%5Boperator%5D%5Blabel%5D=%3D&filters%5B1%5D%5Boperator%5D%5Bvalue%5D=%3D&filters%5B1%5D%5Bid%5D%5Bcaption%5D=%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%B8%D0%B9&filters%5B1%5D%5Bid%5D%5Bid%5D=15&filters%5B2%5D%5Boperator%5D%5Blabel%5D=%21%3D&filters%5B2%5D%5Boperator%5D%5Bvalue%5D=%21%3D&filters%5B2%5D%5Bvalues%5D%5B0%5D%5Bid%5D=4&filters%5B2%5D%5Bvalues%5D%5B0%5D%5Bname%5D=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D1%96%D1%8F%204&filters%5B2%5D%5Bvalues%5D%5B1%5D%5Bid%5D=6&filters%5B2%5D%5Bvalues%5D%5B1%5D%5Bname%5D=comp%206&filters%5B2%5D%5Bid%5D%5Bcaption%5D=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D1%96%D1%8F&filters%5B2%5D%5Bid%5D%5Bid%5D=14&filters%5B3%5D%5Boperator%5D%5Blabel%5D=%21%3D&filters%5B3%5D%5Boperator%5D%5Bvalue%5D=%21%3D&filters%5B3%5D%5Bvalues%5D%5B0%5D%5Bid%5D=1&filters%5B3%5D%5Bvalues%5D%5B0%5D%5Bname%5D=Koch-Bradtke%20Hotel-84542&filters%5B3%5D%5Bvalues%5D%5B1%5D%5Bid%5D=16&filters%5B3%5D%5Bvalues%5D%5B1%5D%5Bname%5D=Hackett-Hackett%20Hotel-26858&filters%5B3%5D%5Bid%5D%5Bcaption%5D=%D0%93%D0%BE%D1%82%D0%B5%D0%BB%D1%8C&filters%5B3%5D%5Bid%5D%5Bid%5D=13'
-const queryString = '?filters%5B0%5D%5Bvalues%5D=true&filters%5B0%5D%5Boperator%5D%5Blabel%5D=%21%3D&filters%5B0%5D%5Boperator%5D%5Bvalue%5D=%21%3D&filters%5B0%5D%5Bid%5D%5Bcaption%5D=%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%B8%D0%B9&filters%5B0%5D%5Bid%5D%5Bid%5D=15&filters%5B1%5D%5Bvalues%5D=false&filters%5B1%5D%5Boperator%5D%5Blabel%5D=%3D&filters%5B1%5D%5Boperator%5D%5Bvalue%5D=%3D&filters%5B1%5D%5Bid%5D%5Bcaption%5D=%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%B8%D0%B9&filters%5B1%5D%5Bid%5D%5Bid%5D=15&filters%5B2%5D%5Boperator%5D%5Blabel%5D=%21%3D&filters%5B2%5D%5Boperator%5D%5Bvalue%5D=%21%3D&filters%5B2%5D%5Bvalues%5D%5B0%5D%5Bid%5D=4&filters%5B2%5D%5Bvalues%5D%5B0%5D%5Bname%5D=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D1%96%D1%8F%204&filters%5B2%5D%5Bvalues%5D%5B1%5D%5Bid%5D=6&filters%5B2%5D%5Bvalues%5D%5B1%5D%5Bname%5D=comp%206&filters%5B2%5D%5Bid%5D%5Bcaption%5D=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D1%96%D1%8F&filters%5B2%5D%5Bid%5D%5Bid%5D=14&filters%5B3%5D%5Boperator%5D%5Blabel%5D=%21%3D&filters%5B3%5D%5Boperator%5D%5Bvalue%5D=%21%3D&filters%5B3%5D%5Bvalues%5D%5B0%5D%5Bid%5D=1&filters%5B3%5D%5Bvalues%5D%5B0%5D%5Bname%5D=Koch-Bradtke%20Hotel-84542&filters%5B3%5D%5Bvalues%5D%5B1%5D%5Bid%5D=16&filters%5B3%5D%5Bvalues%5D%5B1%5D%5Bname%5D=Hackett-Hackett%20Hotel-26858&filters%5B3%5D%5Bid%5D%5Bcaption%5D=%D0%93%D0%BE%D1%82%D0%B5%D0%BB%D1%8C&filters%5B3%5D%5Bid%5D%5Bid%5D=13'
+const queryString = ''
 const FiltersTablePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,7 +60,7 @@ const FiltersTablePage = () => {
 
   useEffect(() => {
     // @ts
-    fetch('https://api.bronui.com/admin/address-names', requestOptions)
+    fetch('https://api.dev.bronui.com/extranet/hotels/nadiya-hotel/reservations', requestOptions)
       .then((response) => response.json())
       .then((data: Response) => {
         setFilters(data.meta.filters);

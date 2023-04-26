@@ -12,7 +12,7 @@ export const fillSavedFilterRowWithExtraData = (
         return {
           id: row as unknown as FilterResponseItem,
           values: initial.values, // || [],
-          operator: initial.operator,
+          operator: initial.operator || null,
         };
       })
     : [];

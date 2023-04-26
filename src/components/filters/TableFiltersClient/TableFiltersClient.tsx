@@ -91,7 +91,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
 
               push({
                 id: firstItem,
-                operator: '',
+                operator: null,
                 values: [],
               });
 
@@ -111,6 +111,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                 </div>
                 <ul className="filter-list__items">
                   {filters.map((row: InitialFilterValuePopulated, index: number) => {
+                    console.log(row);
                     // clear operator's select and values select
                     const onChangeField = () => {
                       form.setFieldValue(`filters[${index}].operator`, null);
