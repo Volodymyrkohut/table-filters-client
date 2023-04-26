@@ -4,10 +4,15 @@ export default function filterSchemaHOF(validationMessage?: {
     date: string;
     string: string;
     number: string;
-}): Yup.ObjectSchema<Yup.Shape<object | undefined, {
-    filters: ((object & {
-        id: any;
-        values: any;
-        operator: any;
-    }) | undefined)[] | undefined;
-}>, object>;
+}): Yup.ObjectSchema<{
+    filters: {
+        values?: boolean | (string | undefined)[] | (Date | undefined)[] | undefined;
+        id: {};
+        operator: {
+            id?: string | undefined;
+            name?: string | undefined;
+        };
+    }[] | undefined;
+}, Yup.AnyObject, {
+    filters: "";
+}, "">;
