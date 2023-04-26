@@ -42,7 +42,7 @@ const FiltersTablePage = () => {
   const onLoadSourceOptions = (filterId: string): any => {
     return async (inputValue: any, prevOptions: any, additional = { page: 1 }) => {
       const response = await fetch(
-        `https://api.dev.bronui.com/admin/filters/${filterId}/source-data?query=${inputValue}&page=${additional.page}`,
+        `https://api.dev.bronui.com/extranet/hotels/nadiya-hotel/filters/${filterId}/source-data?query=${inputValue}&page=${additional.page}`,
         requestOptions
       );
 
@@ -72,7 +72,6 @@ const FiltersTablePage = () => {
 
   // save filters to url
   const submitForm = (data: InitialFilterValues) => {
-    console.log(data);
     navigate(`?${stringifyUrl(data)}`);
   };
 

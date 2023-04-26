@@ -18,6 +18,7 @@ export const fillSavedFilterRowWithExtraData = (
     : [];
 
   return {
+    // @ts-ignore
     filters: inputFilterItems,
   };
 };

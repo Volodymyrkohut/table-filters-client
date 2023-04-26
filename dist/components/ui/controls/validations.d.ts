@@ -6,12 +6,12 @@ export default function filterSchemaHOF(validationMessage?: {
     number: string;
 }): Yup.ObjectSchema<{
     filters: {
-        values?: boolean | (string | undefined)[] | (Date | undefined)[] | undefined;
-        id: {};
-        operator: {
+        values?: boolean | {
             id?: string | undefined;
             name?: string | undefined;
-        };
+        }[] | undefined;
+        id: {};
+        operator: {};
     }[] | undefined;
 }, Yup.AnyObject, {
     filters: "";

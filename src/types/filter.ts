@@ -20,7 +20,7 @@ export interface Additional {
 export interface FilterResponseItem {
   caption: string;
   id: number;
-  values: null | Array<{ id: number; name: string }>;
+  values: null | { data: Array<ReactSelectOption> };
   operators: Array<Operators>;
   type: FilterType;
 }

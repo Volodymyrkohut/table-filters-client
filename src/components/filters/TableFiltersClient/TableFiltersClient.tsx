@@ -128,7 +128,7 @@ const TableFiltersClient: React.FC<ITableFiltersClient> = (props) => {
                           options={{
                             fields: filtersTypesList,
                             operators: row?.id?.operators,
-                            values: row?.id?.values,
+                            values: row?.id?.values?.data,
                           }}
                           onRemove={onRemove}
                           index={index}
